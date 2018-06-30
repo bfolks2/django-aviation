@@ -1,57 +1,32 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Airport, Runway, AirportComm
 
-from rest_framework.viewsets import ViewSet
-from rest_framework.response import Response
+from prepair.views import PrepairViewSet
+from .models import Airport, Runway, AirportComm
 from .serializers import AirportSerializer, RunwaySerializer, AirportCommSerializer
 
 
-class AirportViewSet(ViewSet):
+class AirportViewSet(PrepairViewSet):
     """
     DRF Viewset for Airport objects
     """
 
-    def list(self, request):
-        queryset = Airport.objects.all()
-        serializer = AirportSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        queryset = Airport.objects.all()
-        airport = get_object_or_404(queryset, pk=pk)
-        serializer = AirportSerializer(airport)
-        return Response(serializer.data)
+    DB_MODEL_CLASS = Airport
+    SERIALIZER_CLASS = AirportSerializer
 
 
-class RunwayViewSet(ViewSet):
+class RunwayViewSet(PrepairViewSet):
     """
     DRF Viewset for Runway objects
     """
 
-    def list(self, request):
-        queryset = Runway.objects.all()
-        serializer = RunwaySerializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        queryset = Runway.objects.all()
-        runway = get_object_or_404(queryset, pk=pk)
-        serializer = RunwaySerializer(runway)
-        return Response(serializer.data)
+    DB_MODEL_CLASS = Runway
+    SERIALIZER_CLASS = RunwaySerializer
 
 
-class AirportCommViewSet(ViewSet):
+class AirportCommViewSet(PrepairViewSet):
     """
     DRF Viewset for AirportComm objects
     """
 
-    def list(self, request):
-        queryset = AirportComm.objects.all()
-        serializer = AirportCommSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, pk=None):
-        queryset = AirportComm.objects.all()
-        airport_comm = get_object_or_404(queryset, pk=pk)
-        serializer = AirportCommSerializer(airport_comm)
-        return Response(serializer.data)
+    DB_MODEL_CLASS = AirportComm
+    SERIALIZER_CLASS = AirportCommSerializer
