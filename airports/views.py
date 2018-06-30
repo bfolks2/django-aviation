@@ -25,7 +25,7 @@ class AirportViewSet(ViewSet):
 
 class RunwayViewSet(ViewSet):
     """
-    DRF Viewset for Airport objects
+    DRF Viewset for Runway objects
     """
 
     def list(self, request):
@@ -42,7 +42,7 @@ class RunwayViewSet(ViewSet):
 
 class AirportCommViewSet(ViewSet):
     """
-    DRF Viewset for Airport objects
+    DRF Viewset for AirportComm objects
     """
 
     def list(self, request):
