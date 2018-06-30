@@ -6,13 +6,16 @@ class Airport(models.Model):
     icao = models.CharField(max_length=4)
     name = models.CharField(max_length=256)
     region = models.CharField(max_length=32)
-    elevation = models.IntegerField()
+    elevation = models.IntegerField(help_text='MSL, feet')
 
     # Dynamic values altered per GET request
     metar = models.CharField(max_length=512, blank=True, null=True)
     taf = models.CharField(max_length=1024, blank=True, null=True)
     sunrise = models.CharField(max_length=64, blank=True, null=True)
     sunset = models.CharField(max_length=64, blank=True, null=True)
+
+    def __str__(self):
+        return u'{} - {}'.format(self.name, self.icao.upper())
 
 
 class Runway(models.Model):
@@ -30,12 +33,15 @@ class Runway(models.Model):
     airport = models.ForeignKey('airports.Airport')
     name = models.CharField(max_length=32)
     surface_type = models.IntegerField(choices=SURFACE_CHOICES, default=ASP)
-    length = models.DecimalField(max_digits=6, decimal_places=2)
-    width = models.DecimalField(max_digits=6, decimal_places=2)
-    bearing = models.DecimalField(max_digits=5, decimal_places=2)
+    length = models.DecimalField(max_digits=6, decimal_places=2, help_text='Length in feet')
+    width = models.DecimalField(max_digits=6, decimal_places=2, help_text='Width in feet')
+    bearing = models.DecimalField(max_digits=5, decimal_places=2, help_text='Bearing in degrees')
+
+    def __str__(self):
+        return u'{} - {}'.format(self.airport.icao, self.name)
 
 
-class Communication(models.Model):
+class AirportComm(models.Model):
 
     CTAF = 1
     UNICOM = 2
@@ -60,3 +66,6 @@ class Communication(models.Model):
     frequency = models.DecimalField(max_digits=5, decimal_places=2)
     airport = models.ForeignKey('airports.Airport')
     type = models.IntegerField(choices=TYPE_CHOICES, default=CTAF)
+
+    def __str__(self):
+        return u'{} - {}'.format(self.airport.icao, self.frequency)

@@ -8,6 +8,9 @@ class Post(models.Model):
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_updated = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return u'{} - {}'.format(self.member, self.airport.icao)
+
 
 class Comment(models.Model):
     member = models.ForeignKey('accounts.Member')
@@ -15,3 +18,6 @@ class Comment(models.Model):
     body = models.TextField(null=True, blank=True)
     datetime_created = models.DateTimeField(auto_now_add=True)
     datetime_updated = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return u'{}, Comment on Post#{}'.format(self.member, self.post.id)
