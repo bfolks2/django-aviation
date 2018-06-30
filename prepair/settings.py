@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'airports',
     'communication',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
