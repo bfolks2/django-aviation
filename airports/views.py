@@ -10,8 +10,12 @@ class AirportViewSet(PrepairViewSet):
     DRF Viewset for Airport objects
     """
 
-    DB_MODEL_CLASS = Airport
-    SERIALIZER_CLASS = AirportSerializer
+    prepair_model_class = Airport
+    queryset = Airport.objects.all()
+    serializer_class = AirportSerializer
+
+    filter_fields = ('pk', 'icao', 'name', 'region', 'elevation')
+    iexact_filter_fields = ('icao', 'name', 'region')
 
 
 class RunwayViewSet(PrepairViewSet):
@@ -19,8 +23,12 @@ class RunwayViewSet(PrepairViewSet):
     DRF Viewset for Runway objects
     """
 
-    DB_MODEL_CLASS = Runway
-    SERIALIZER_CLASS = RunwaySerializer
+    prepair_model_class = Runway
+    queryset = Runway.objects.all()
+    serializer_class = RunwaySerializer
+
+    filter_fields = ('pk', 'airport', 'name', 'surface_type')
+    iexact_filter_fields = ('name',)
 
 
 class AirportCommViewSet(PrepairViewSet):
@@ -28,5 +36,9 @@ class AirportCommViewSet(PrepairViewSet):
     DRF Viewset for AirportComm objects
     """
 
-    DB_MODEL_CLASS = AirportComm
-    SERIALIZER_CLASS = AirportCommSerializer
+    prepair_model_class = AirportComm
+    queryset = AirportComm.objects.all()
+    serializer_class = AirportCommSerializer
+
+    filter_fields = ('pk', 'frequency', 'airport', 'type')
+    iexact_filter_fields = tuple()

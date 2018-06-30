@@ -10,8 +10,12 @@ class PostViewSet(PrepairViewSet):
     DRF Viewset for Post objects
     """
 
-    DB_MODEL_CLASS = Post
-    SERIALIZER_CLASS = PostSerializer
+    prepair_model_class = Post
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    filter_fields = ('pk', 'member', 'airport')
+    iexact_filter_fields = tuple()
 
 
 class CommentViewSet(PrepairViewSet):
@@ -19,5 +23,9 @@ class CommentViewSet(PrepairViewSet):
     DRF Viewset for Comment objects
     """
 
-    DB_MODEL_CLASS = Comment
-    SERIALIZER_CLASS = CommentSerializer
+    prepair_model_class = Comment
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+    filter_fields = ('pk', 'member', 'post')
+    iexact_filter_fields = tuple()

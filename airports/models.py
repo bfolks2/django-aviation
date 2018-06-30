@@ -14,6 +14,10 @@ class Airport(models.Model):
     sunrise = models.CharField(max_length=64, blank=True, null=True)
     sunset = models.CharField(max_length=64, blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        self.icao = self.icao.upper()
+        super(Airport, self).save(*args, **kwargs)
+
     def __str__(self):
         return u'{} - {}'.format(self.name, self.icao.upper())
 

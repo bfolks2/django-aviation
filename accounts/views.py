@@ -10,5 +10,9 @@ class MemberViewSet(PrepairViewSet):
     DRF Viewset for Member objects
     """
 
-    DB_MODEL_CLASS = Member
-    SERIALIZER_CLASS = MemberSerializer
+    prepair_model_class = Member
+    queryset = Member.objects.all()
+    serializer_class = MemberSerializer
+
+    filter_fields = ('pk', 'user', 'home_airport')
+    iexact_filter_fields = tuple()
