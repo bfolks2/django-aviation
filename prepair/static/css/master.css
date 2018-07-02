@@ -1,0 +1,17 @@
+body{
+  background-color: #f9f9f9;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  font-family: 'Open Sans',sans-serif;
+}
+
+span.glyphicon-plane {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: orange;
+}
+
+.input-box input{
+    width: 25%;
+    margin-bottom: 10px;
+}

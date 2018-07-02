@@ -26,7 +26,8 @@ from communication.views import PostViewSet, CommentViewSet
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index-view')
+    url(r'^$', views.index, name='index-view'),
+    url(r'^redirect-icao$', views.redirect_icao, name='redirect-icao'),
 ]
 
 # Below are the DRF-Ember Router URL patterns

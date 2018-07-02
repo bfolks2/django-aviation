@@ -1,14 +1,28 @@
 from django.shortcuts import render, get_object_or_404
 from django.http.request import QueryDict
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 from rest_framework.viewsets import GenericViewSet as DRFGenericViewset
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, \
     DestroyModelMixin
 from rest_framework.response import Response
 
+from airports.models import Airport
+from api.flightplan_client import FlightPlanAPIClient
+
 
 def index(request):
     return render(request, 'index.html')
+
+
+def redirect_icao(request):
+    icao = request.POST.get('icao', None)
+
+    client = FlightPlanAPIClient()
+    client.get(icao=icao.lower())
+
+    return HttpResponseRedirect(reverse('index-view'))
 
 
 class PrepairViewSet(CreateModelMixin,
