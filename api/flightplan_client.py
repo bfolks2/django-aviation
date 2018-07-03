@@ -135,8 +135,9 @@ class FlightPlanAPIClient(object):
         for key in runway_dict:
             if runway_dict[key].lower() == data['surface_type'].lower():
                 data['surface_type'] = key
-                break
+                return data
 
+        data['surface_type'] = Runway.OTHER
         return data
 
     def airport_comm_field_validator(self, data):

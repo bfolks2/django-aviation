@@ -27,11 +27,13 @@ class Runway(models.Model):
     ASP = 1
     CON = 2
     GRS = 3
+    OTHER = 4
 
     SURFACE_CHOICES = (
         (ASP, 'Asphalt'),
         (CON, 'Concrete'),
         (GRS, 'Grass'),
+        (OTHER, 'Other')
     )
 
     airport = models.ForeignKey('airports.Airport')
