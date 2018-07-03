@@ -20,7 +20,7 @@ def redirect_icao(request):
     icao = request.POST.get('icao', None)
 
     client = FlightPlanAPIClient()
-    client.get(icao=icao.lower())
+    pk = client.get(icao=icao.lower())
 
     return HttpResponseRedirect(reverse('index-view'))
 

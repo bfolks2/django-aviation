@@ -11,8 +11,8 @@ class Airport(models.Model):
     # Dynamic values altered per GET request
     metar = models.CharField(max_length=512, blank=True, null=True)
     taf = models.CharField(max_length=1024, blank=True, null=True)
-    sunrise = models.CharField(max_length=64, blank=True, null=True)
-    sunset = models.CharField(max_length=64, blank=True, null=True)
+    sunrise = models.DateTimeField(max_length=64, blank=True, null=True)
+    sunset = models.DateTimeField(max_length=64, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         self.icao = self.icao.upper()
