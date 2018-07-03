@@ -2,7 +2,7 @@ import requests
 from airports.serializers import AirportSerializer, RunwaySerializer, AirportCommSerializer
 from airports.models import Airport, Runway, AirportComm
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class FlightPlanAPIClient(object):
     """
@@ -163,16 +163,21 @@ class FlightPlanAPIClient(object):
         data = self.field_mapper_logic(self.WEATHER_MAPPER, weather_data)
         data = self.weather_field_validator(data)
 
+        # Get offset from raw data
+        offset = json['timezone'].get('offset', 0)
+
         # Get sunrise/sunset values from API raw data and convert to DateTime
         # We must remove the trailing Zulu and mid-line T from the API raw_value
         raw_sunset = json['times'].get('sunset', None)
         if raw_sunset:
             sunset = datetime.strptime(raw_sunset[:-1].replace('T', ' '), '%Y-%m-%d %H:%M:%S.%f')
+            sunset = sunset + timedelta(seconds=offset)
             data['sunset'] = sunset.replace(second=0, microsecond=0)
 
         raw_sunrise = json['times'].get('sunrise', None)
         if raw_sunrise:
             sunrise = datetime.strptime(raw_sunrise[:-1].replace('T', ' '), '%Y-%m-%d %H:%M:%S.%f')
+            sunrise = sunrise +  timedelta(seconds=offset)
             data['sunrise'] = sunrise.replace(second=0, microsecond=0)
 
         return data
