@@ -21,15 +21,25 @@ span.glyphicon-plane {
     color: orange;
 }
 
+.sub-header {
+    padding-bottom: 20px;
+    border-top: 1px solid #c6c6c6;
+}
+
 .input-box input {
     width: 200px;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
 }
 
 .main-btn input {
     margin-top: 10px;
     width: 200px;
     background-color: #1d3863;
+}
+
+.small-text {
+    font-size: 0.85em;
+    font-style: italic;
 }
 
 .register-btn input {

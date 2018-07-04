@@ -4,18 +4,47 @@
     <title>PrepAir</title>
 {% endblock %}
 
+{% load static %}
 {% block content %}
-    <div class="container text-center">
-        <h1>Airport Information</h1>
+    <div class="container">
+        <div class="main-header">
+            <h1>PrepAir.com</h1>
+            <p>
+                Or at least that could be the name of this site if I had purchased that domain...
+            </p>
+            <p>
+                This site is built to
+                allow users to get up-to-date flight simulating information.  Anytime a user searches for an airport,
+                real-time weather information is displayed, by use of an external API.  Additionally, if the airport
+                does not yet exist in the internal database, all additional static data is then permanently saved into
+                the database (i.e. name, runway info, communication/frequencies, etc).  Users can search across the
+                internal database of airports for all relevant information, as well as post their own specific reports,
+                or even comment on other user's experiences.
+            </p>
+        </div>
+        <div class="sub-header text-center">
+            <h1>Airport Search</h1>
 
-        <form class="icao-form" method="POST" action="/redirect-icao">
-            <div class="input-box">
-                <input type="text" placeholder="Enter 3-4 digit Airport ID" name="icao">
+            <form class="icao-form" method="POST" action="{% url 'redirect-icao' %}">
+                <div class="input-box">
+                    <input type="text" placeholder="Enter 3-4 digit Airport ID" name="icao">
+                </div>
+                <div class="small-text">
+                    <p>Examples: KJFK, KLAX, KORD, EGLL, etc.</p>
+                </div>
+                <div class="main-btn">
+                    <input class="btn btn-primary" type="submit" value="Search">
+                </div>
+                {% csrf_token %}
+            </form>
+        </div>
+
+        <div class="sub-header text-center">
+            <h2>Just here to browse around?  You can view the internal database of airports <a href="/">here</a></h2>
+            <img src="{% static "media/dark_banner.png" %}" style="margin-top: 30px;"/>
+            <div class="small-text">
+                <p>The data available through this site is for flight simulation use only and must not be used for real-world aviation.</p>
             </div>
-            <div class="main-btn">
-                <input class="btn btn-primary" type="submit" value="Search">
-            </div>
-            {% csrf_token %}
-        </form>
+        </div>
     </div>
 {% endblock %}

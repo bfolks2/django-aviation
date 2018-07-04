@@ -39,8 +39,8 @@ class Runway(models.Model):
     airport = models.ForeignKey('airports.Airport')
     name = models.CharField(max_length=32)
     surface_type = models.IntegerField(choices=SURFACE_CHOICES, default=ASP)
-    length = models.DecimalField(max_digits=6, decimal_places=2, help_text='Length in feet')
-    width = models.DecimalField(max_digits=6, decimal_places=2, help_text='Width in feet')
+    length = models.DecimalField(max_digits=7, decimal_places=2, help_text='Length in feet')
+    width = models.DecimalField(max_digits=7, decimal_places=2, help_text='Width in feet')
     bearing = models.DecimalField(max_digits=5, decimal_places=2, help_text='Bearing in degrees')
 
     def __str__(self):
