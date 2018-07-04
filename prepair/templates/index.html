@@ -5,15 +5,17 @@
 {% endblock %}
 
 {% block content %}
-    <h1>DJANGO HOME PAGE</h1>
+    <div class="container text-center">
+        <h1>Airport Information</h1>
 
-    <form class="icao-form" method="POST" action="/redirect-icao">
-        <div class="input-box">
-            <input type="text" placeholder="Enter 3-4 digit Airport Identifier" name="icao">
-        </div>
-        <div class="search-btn">
-            <input type="submit" value="Search">
-        </div>
-        {% csrf_token %}
-    </form>
+        <form class="icao-form" method="POST" action="/redirect-icao">
+            <div class="input-box">
+                <input type="text" placeholder="Enter 3-4 digit Airport ID" name="icao">
+            </div>
+            <div class="main-btn">
+                <input class="btn btn-primary" type="submit" value="Search">
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
 {% endblock %}

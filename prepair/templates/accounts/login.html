@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head_includes %}
+    <title>PrepAir Register</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container register-form">
+        {% if invalid %}
+            <h1 class='bg-warning text-center'>Login Credentials were not correct.  Try Again</h1>
+        {% endif %}
+        {% if inactive %}
+            <h1 class='bg-warning text-center'>{{ username }} is currently inactive.  Contact Site Admin</h1>
+        {% endif %}
+        <div class="register-container">
+            <h1>Login Below</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="login-input">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" placeholder="Input Username Here">
+                </div>
+                <div class="login-input">
+                    <label for="password">Password</label>
+                    <input type="password" name="password">
+                </div>
+                <div class="register-btn">
+                    <input class="btn btn-primary" type="submit" name="" value="Login">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

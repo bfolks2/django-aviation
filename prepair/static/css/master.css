@@ -1,8 +1,18 @@
-body{
+body {
   background-color: #f9f9f9;
   padding-top: 50px;
   padding-bottom: 30px;
   font-family: 'Open Sans',sans-serif;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 2.0em !important;
+    padding-bottom: 10px !important;
+}
+
+h2 {
+    font-size: 1.5em !important;
 }
 
 span.glyphicon-plane {
@@ -11,7 +21,28 @@ span.glyphicon-plane {
     color: orange;
 }
 
-.input-box input{
-    width: 25%;
+.input-box input {
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.main-btn input {
+    margin-top: 10px;
+    width: 200px;
+    background-color: #1d3863;
+}
+
+.register-btn input {
+    margin-top: 10px;
+    width: 100%;
+    background-color: #1d3863;
+}
+
+.register-container {
+    margin: auto;
+    width: 300px;
+}
+
+.login-input {
     margin-bottom: 10px;
 }

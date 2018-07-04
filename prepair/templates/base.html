@@ -32,31 +32,26 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li>
-                <a href="">
+                <a href="{% url 'index-view' %}">
                   <span class='glyphicon glyphicon-plane' aria-hidden="true"></span>
                 </a>
               </li>
-{#              {% if user.is_authenticated %}#}
-{#                <li><a href="">LOGOUT</a></li>#}
-{#              {% else %}#}
-{#                <li><a href="">REGISTER</a></li>#}
-{#                <li><a href="">LOGIN</a></li>#}
-{#              {% endif %}#}
-{#            </ul>#}
-{#            <ul class="nav navbar-nav navbar-right">#}
-{#              {% if user.is_authenticated %}#}
-{#                <li><a class="barname" href="">@</a></li>#}
-{#              {% endif %}#}
-{#            </ul>#}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'index-view' %}">@{{ user.username }}</a></li>
+                <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+              {% else %}
+                <li><a href="{% url 'accounts:register-member' %}">Register</a></li>
+                <li><a href="{% url 'accounts:login' %}">Login</a></li>
+              {% endif %}
+            </ul>
           </div>
       </div>
     </nav>
 
-    <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
-
+  {% block content %}
+  {% endblock %}
 
   </body>
 </html>
