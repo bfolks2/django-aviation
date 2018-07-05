@@ -21,6 +21,11 @@ span.glyphicon-plane {
     color: orange;
 }
 
+span.glyphicon-wrench {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
 .sub-header {
     padding-bottom: 20px;
     border-top: 1px solid #c6c6c6;
