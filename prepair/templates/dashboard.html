@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head_includes %}
+    <title>PrepAir</title>
+{% endblock %}
+
+{% load static %}
+
+{% block scripting %}
+    <script type="text/javascript">
+        window.airport_pk = {{ airport_pk }};
+        window.user_id = {{ user_id }};
+        window.username = '{{ username }}';
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div id="emberRoot"></div>
+{% endblock %}

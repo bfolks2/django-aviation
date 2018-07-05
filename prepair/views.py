@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http.request import QueryDict
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from django.views.generic.base import TemplateView
 
 from rest_framework.viewsets import GenericViewSet as DRFGenericViewset
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, \
@@ -22,7 +23,33 @@ def redirect_icao(request):
     client = FlightPlanAPIClient()
     pk = client.get(icao=icao.lower())
 
-    return HttpResponseRedirect(reverse('index-view'))
+    return HttpResponseRedirect(reverse('dashboard') + '/?airportpk={}'.format(pk))
+
+# def airport_dash(request):
+#     airport_pk =request.GET.get('airportpk', 0)
+#     user_id = request.user.id if request.user.id else 0
+#     username = request.user.username if request.user.username else 0
+#
+#     data = {'airport_pk': airport_pk, 'user_id': user_id, 'username': username}
+#
+#     return render(request, 'dashboard.html', data)
+
+
+class DashboardTemplateView(TemplateView):
+    template_name = 'dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardTemplateView, self).get_context_data(**kwargs)
+
+        airport_pk = self.request.GET.get('airportpk', 0)
+        user_id = self.request.user.id if self.request.user.id else 0
+        username = self.request.user.username if self.request.user.username else 0
+
+        context['airport_pk'] = airport_pk
+        context['user_id'] = user_id
+        context['username'] = username
+
+        return context
 
 
 class PrepairViewSet(CreateModelMixin,

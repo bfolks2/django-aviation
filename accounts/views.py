@@ -47,6 +47,10 @@ def register_member(request):
 
 
 def login_view(request):
+
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('index-view'))
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')

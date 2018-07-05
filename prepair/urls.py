@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index-view'),
     url(r'^redirect-icao$', views.redirect_icao, name='redirect-icao'),
     url(r'^accounts/', include('accounts.urls')),
+    url(r'^dashboard/?', views.DashboardTemplateView.as_view(), name='dashboard')
 ]
 
 # Below are the DRF-Ember Router URL patterns
