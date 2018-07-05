@@ -27,20 +27,21 @@
 
             <form class="icao-form" method="POST" action="{% url 'redirect-icao' %}">
                 <div class="input-box">
-                    <input type="text" placeholder="Enter 3-4 digit Airport ID" name="icao">
+                    <input id="icao-input" type="text" placeholder="Enter 3-4 digit Airport ID" name="icao"
+                           onkeyup="validateICAO()">
                 </div>
                 <div class="small-text">
                     <p>Examples: KJFK, KLAX, KORD, EGLL, etc.</p>
                 </div>
                 <div class="main-btn">
-                    <input class="btn btn-primary" type="submit" value="Search">
+                    <input id="submit-btn" class="btn btn-primary" type="submit" value="Search" disabled>
                 </div>
                 {% csrf_token %}
             </form>
         </div>
 
         <div class="sub-header text-center">
-            <h2>Just here to browse around?  You can view the internal database of airports <a href="/">here</a></h2>
+            <h2>Just here to browse around?  You can view the internal database of airport information <a href="/">here</a></h2>
             <img src="{% static "media/dark_banner.png" %}" style="margin-top: 30px;"/>
             <div class="small-text">
                 <p>The data available through this site is for flight simulation use only and must not be used for real-world aviation.</p>
