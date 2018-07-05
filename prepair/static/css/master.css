@@ -15,15 +15,38 @@ h2 {
     font-size: 1.5em !important;
 }
 
+.navbar li a {
+    color: white !important;
+}
+
+.navbar li p {
+    color: white !important;
+    line-height: 50px;
+    font-style: italic;
+}
+
+
+.navbar li a:hover {
+    color: lightgray !important;
+}
+
 span.glyphicon-plane {
     font-size: 1.5em;
     font-weight: bold;
     color: orange;
 }
 
+span.glyphicon-plane:hover {
+    color: darkorange;
+}
+
 span.glyphicon-wrench {
     font-size: 1.5em;
     font-weight: bold;
+}
+
+.main-header {
+    padding-top: 10px;
 }
 
 .sub-header {
