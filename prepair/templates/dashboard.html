@@ -12,8 +12,12 @@
         window.user_id = {{ user_id }};
         window.username = '{{ username }}';
     </script>
+
+    <script src="{% static 'dashboard/dist/assets/vendor.js' %}"></script>
+    <script src="{% static 'dashboard/dist/assets/dashboard.js' %}"></script>
 {% endblock %}
 
+{# The entire Ember app is nested within the below div #}
 {% block content %}
     <div id="emberRoot"></div>
 {% endblock %}
