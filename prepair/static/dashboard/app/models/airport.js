@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import { computed } from '@ember/object';
 
 export default DS.Model.extend({
     icao: DS.attr('string'),
@@ -10,5 +11,9 @@ export default DS.Model.extend({
     sunrise: DS.attr('date'),
     sunset: DS.attr('date'),
     runways: DS.hasMany('runway'),
-    comms: DS.hasMany('airport-comm')
+    comms: DS.hasMany('airport-comm'),
+
+    runwayCount: computed('runways.[]', function () {
+      return (this.store.peekAll('runway').filterBy('airport.id', this.get('id')).length)/2;
+    })
 });

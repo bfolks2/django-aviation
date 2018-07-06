@@ -1,2 +1,16 @@
-<h2>From Airports</h2>
-<!--{{outlet}}-->
+{{#models-table-server-paginated
+  data=model.airports
+  columns=columnsForDataTable
+  showColumnsDropdown=false
+  multipleSelect=false
+  showPageSize=false
+  useFilteringByColumns=false
+  selectedItems=selectedItems
+  metaItemsCountProperty='count'
+  pageSize=pageSize
+  pagesCount=pagesCount
+as |mt|}}
+  <div class="adoptions-table-overflow-wrapper">
+  {{mt.table}}
+  </div>
+{{/models-table-server-paginated}}

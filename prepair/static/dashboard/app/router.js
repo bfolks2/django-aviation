@@ -8,6 +8,7 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('airports');
+  this.route('airport', {path: 'airport/:airport_id'});
 });
 
 export default Router;
