@@ -1,16 +1,23 @@
-{{#models-table-server-paginated
+{{#models-table
   data=model.airports
   columns=columnsForDataTable
-  showColumnsDropdown=false
-  multipleSelect=false
-  showPageSize=false
+  showComponentFooter=true
+  showColumnsDropdown=true
   useFilteringByColumns=false
-  selectedItems=selectedItems
-  metaItemsCountProperty='count'
-  pageSize=pageSize
-  pagesCount=pagesCount
+  showGlobalFilter=false
+  doFilteringByHiddenColumns=false
+  useNumericPagination=true
+  filteringIgnoreCase=false
+  multipleColumnsSorting=true
+  showPageSize=true
 as |mt|}}
-  <div class="adoptions-table-overflow-wrapper">
-  {{mt.table}}
+  <div class="emt-column-dropdown">
+    {{mt.columns-dropdown}}
   </div>
-{{/models-table-server-paginated}}
+  <div class="emt-table">
+    {{mt.table}}
+  </div>
+  <div class="emt-footer">
+    {{mt.footer}}
+  </div>
+{{/models-table}}

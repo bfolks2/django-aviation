@@ -84,3 +84,19 @@ span.glyphicon-wrench {
 .login-input {
     margin-bottom: 10px;
 }
+
+.table-header {
+    font-weight: bolder;
+}
+
+.btn-group>.btn {
+    margin-bottom: 10px;
+}
+
+.table-header {
+    background-color: lightgray;
+}
+
+tbody tr:nth-child(even) {
+    background: #eaebed;
+}
