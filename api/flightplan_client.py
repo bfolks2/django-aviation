@@ -1,4 +1,5 @@
 import requests
+import re
 from airports.serializers import AirportSerializer, RunwaySerializer, AirportCommSerializer
 from airports.models import Airport, Runway, AirportComm
 
@@ -100,10 +101,14 @@ class FlightPlanAPIClient(object):
 
     def create_runways(self, airport, json):
 
-        for runway_data in json['runways']:
+        length = int(len(json['runways'])/2)
+
+        for runway_data in json['runways'][:length]:
             data = self.field_mapper_logic(self.RUNWAY_MAPPER, runway_data)
             data.update({'airport': airport.pk})
             data = self.runway_field_validator(data)
+
+            data = self.combine_runway_data(data)
 
             runway_serializer = RunwaySerializer(data=data)
             if runway_serializer.is_valid(raise_exception=False):
@@ -147,6 +152,29 @@ class FlightPlanAPIClient(object):
                 return data
 
         data['surface_type'] = Runway.OTHER
+        return data
+
+    @staticmethod
+    def combine_runway_data(data):
+
+        name = data['name']
+        numerical_name = int(re.findall("\d+", name)[0]) + 18
+
+        letter_name = ''
+        if 'L' in name.upper():
+            letter_name = 'R'
+        if 'R' in name.upper():
+            letter_name = 'L'
+        if 'C' in name.upper():
+            letter_name = 'C'
+
+        new_name = u'{}/{}{}'.format(data['name'], numerical_name, letter_name)
+        data.update({'name': new_name})
+
+        bearing = data['bearing']
+        new_bearing = u'{}/{}'.format(bearing, round(float(bearing + 180), 2))
+        data.update({'bearing': new_bearing})
+
         return data
 
     def airport_comm_field_validator(self, data):

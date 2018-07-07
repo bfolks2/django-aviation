@@ -1,5 +1,9 @@
 .table-header {
     font-weight: bolder;
+    background-color: #d7dde8;
+}
+
+.airport-details .table-header {
     background-color: #1e2838;
     color: white;
 }

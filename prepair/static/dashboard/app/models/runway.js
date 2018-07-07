@@ -14,7 +14,7 @@ export default DS.Model.extend({
     surfaceType: DS.attr('number', {defaultValue: SURFACETYPE_OPTIONS}),
     length: DS.attr('number'),
     width: DS.attr('number'),
-    bearing: DS.attr('number'),
+    bearing: DS.attr('string'),
 
     surfaceTypePretty: computed('surfaceType', function () {
       switch (parseInt(this.get('surfaceType'))) {

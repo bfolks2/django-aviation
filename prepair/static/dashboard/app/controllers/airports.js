@@ -17,6 +17,7 @@ export default Controller.extend({
       {
         "propertyName": "region",
         "title": "Region",
+        "filterWithSelect": true
       },
       {
         "propertyName": "elevation",

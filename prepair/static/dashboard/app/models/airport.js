@@ -14,7 +14,7 @@ export default DS.Model.extend({
     comms: DS.hasMany('airport-comm'),
 
     runwayCount: computed('runways.[]', function () {
-      return (this.store.peekAll('runway').filterBy('airport.id', this.get('id')).length)/2;
+      return (this.store.peekAll('runway').filterBy('airport.id', this.get('id')).length);
     }),
 
 });
