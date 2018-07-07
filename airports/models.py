@@ -69,7 +69,7 @@ class AirportComm(models.Model):
         (CLEARANCE, 'Clearance'),
     )
 
-    frequency = models.DecimalField(max_digits=5, decimal_places=2)
+    frequency = models.DecimalField(max_digits=6, decimal_places=3)
     airport = models.ForeignKey('airports.Airport')
     type = models.IntegerField(choices=TYPE_CHOICES, default=CTAF)
 

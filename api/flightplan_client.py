@@ -133,10 +133,10 @@ class FlightPlanAPIClient(object):
 
     def runway_field_validator(self, data):
         # These fields come in from the API in raw format
-        strings_to_decimals = ['length', 'width', 'bearing']
+        strings_to_decimals = {'length': 0, 'width': 0, 'bearing': 2}
         for field in strings_to_decimals:
             value = data[field]
-            converted_value = round(float(value), 2)
+            converted_value = round(float(value), strings_to_decimals[field])
             data[field] = converted_value
 
         # Convert API values to Django Field Choices
@@ -153,7 +153,7 @@ class FlightPlanAPIClient(object):
         strings_to_decimals = ['frequency']
         for field in strings_to_decimals:
             value = data[field]
-            converted_value = round(float(value/1000000), 2)
+            converted_value = round(float(value/1000000), 3)
             data[field] = converted_value
 
         # Convert API values to Django Field Choices

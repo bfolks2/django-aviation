@@ -7,7 +7,6 @@ export default Controller.extend({
       {
         "propertyName": "icao",
         "title": "ICAO",
-        "sortedBy": "icao",
         "className": "icao-column",
         "component": "models-table/link-to-airport",
       },

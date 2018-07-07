@@ -3,7 +3,7 @@ from django.http.request import QueryDict
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
-from django.conf import settings
+from six.moves.urllib.parse import urlparse
 
 from rest_framework.viewsets import GenericViewSet as DRFGenericViewset
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, \
@@ -33,9 +33,14 @@ class DashboardTemplateView(TemplateView):
 
         airport_pk = self.request.GET.get('airportpk', 0)
         user_id = self.request.user.id if self.request.user.id else 0
+        if urlparse(self.request.path).path == '/dashboard/':
+            base_redirect = 1
+        else:
+            base_redirect = 0
 
         context['airport_pk'] = airport_pk
         context['user_id'] = user_id
+        context['base_redirect'] = base_redirect
 
         return context
 

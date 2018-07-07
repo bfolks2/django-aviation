@@ -10,9 +10,15 @@ export default Route.extend({
   },
 
   afterModel() {
-    const airportID = this.get('session.airportID');
+    const {
+      'session.airportID': airportID,
+      'session.baseRedirect': baseRedirect
+    } = this.getProperties('session.airportID', 'session.baseRedirect')
+
     if (airportID !== 0) {
       this.transitionTo('airport', airportID);
+    } else if (baseRedirect === 1) {
+      this.transitionTo('airports');
     }
   }
 });

@@ -9,6 +9,7 @@ export default Service.extend({
     this.setProperties({
       userID: window.user_id,
       airportID: window.airport_pk,
+      baseRedirect: window.base_redirect
     });
   }
 });

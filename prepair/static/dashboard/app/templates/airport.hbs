@@ -1,4 +1,38 @@
 <div class="airport-details">
-  <h2>{{model.airport.name}}</h2>
+  <h2><u>{{model.airport.icao}} - {{model.airport.name}}</u></h2>
+  <h3>{{model.airport.region}}</h3>
+  <h4>{{model.airport.elevation}}' MSL</h4>
+</div>
+<div class="runway-details">
+  <h2>Runway List</h2>
+  {{models-table
+  data=model.runways
+  columns=columnsForRunwayTable
+  showComponentFooter=true
+  showColumnsDropdown=false
+  useFilteringByColumns=false
+  showGlobalFilter=false
+  doFilteringByHiddenColumns=false
+  useNumericPagination=false
+  filteringIgnoreCase=false
+  multipleColumnsSorting=false
+  showPageSize=false
+}}
+</div>
+<div class="runway-details">
+  <h2>Communcation List</h2>
+  {{models-table
+  data=model.comms
+  columns=columnsForCommTable
+  showComponentFooter=true
+  showColumnsDropdown=false
+  useFilteringByColumns=false
+  showGlobalFilter=false
+  doFilteringByHiddenColumns=false
+  useNumericPagination=false
+  filteringIgnoreCase=false
+  multipleColumnsSorting=false
+  showPageSize=false
+}}
 </div>
 {{link-to '- Back to Table View -' 'airports'}}
