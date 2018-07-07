@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block head_includes %}
     <title>PrepAir</title>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard/dist/assets/vendor.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/dist/assets/dashboard.css' %}">
 {% endblock %}
-
-{% load static %}
 
 {% block scripting %}
     <script type="text/javascript">
         window.airport_pk = {{ airport_pk }};
         window.user_id = {{ user_id }};
-        window.username = '{{ username }}';
     </script>
 
     <script src="{% static 'dashboard/dist/assets/vendor.js' %}"></script>
@@ -19,5 +20,9 @@
 
 {# The entire Ember app is nested within the below div #}
 {% block content %}
+    <div class="container main-header">
+        <img src="{% static 'dashboard/dist/assets/images/departure.png' %}" style="height: 75px; width: 100px">
+        <span class="large-inline">Airport Dashboard</span>
+    </div>
     <div id="emberRoot"></div>
 {% endblock %}

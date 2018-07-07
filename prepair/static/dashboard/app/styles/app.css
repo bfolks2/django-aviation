@@ -1,8 +1,17 @@
 .table-header {
-  font-weight: bold;
-  font-style: italic;
+    font-weight: bolder;
+    background-color: #1e2838;
+    color: white;
 }
 
-body {
-  background-color: red;
+.btn-group>.btn {
+    margin-bottom: 10px;
+}
+
+tbody tr:nth-child(even) {
+    background: #eaebed;
+}
+
+.icao-column {
+  font-weight: bolder;
 }

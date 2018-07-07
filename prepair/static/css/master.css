@@ -85,18 +85,8 @@ span.glyphicon-wrench {
     margin-bottom: 10px;
 }
 
-.table-header {
-    font-weight: bolder;
-}
-
-.btn-group>.btn {
-    margin-bottom: 10px;
-}
-
-.table-header {
-    background-color: lightgray;
-}
-
-tbody tr:nth-child(even) {
-    background: #eaebed;
+.large-inline {
+    font-weight: bold;
+    font-size: 2.0em;
+    vertical-align: bottom;
 }

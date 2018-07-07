@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
 
 export default Controller.extend({
 
@@ -9,6 +8,7 @@ export default Controller.extend({
         "propertyName": "icao",
         "title": "ICAO",
         "sortedBy": "icao",
+        "className": "icao-column"
       },
       {
         "propertyName": "name",
