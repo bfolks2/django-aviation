@@ -11,10 +11,8 @@ export default Route.extend({
 
   afterModel() {
     const airportID = this.get('session.airportID');
-    if (airportID != 0) {
+    if (airportID !== 0) {
       this.transitionTo('airport', airportID);
-    } else {
-      this.transitionTo('airports');
     }
   }
 });

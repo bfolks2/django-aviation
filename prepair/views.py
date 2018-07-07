@@ -33,7 +33,6 @@ class DashboardTemplateView(TemplateView):
 
         airport_pk = self.request.GET.get('airportpk', 0)
         user_id = self.request.user.id if self.request.user.id else 0
-        username = self.request.user.username if self.request.user.username else 0
 
         context['airport_pk'] = airport_pk
         context['user_id'] = user_id

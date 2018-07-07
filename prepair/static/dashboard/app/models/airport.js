@@ -15,5 +15,6 @@ export default DS.Model.extend({
 
     runwayCount: computed('runways.[]', function () {
       return (this.store.peekAll('runway').filterBy('airport.id', this.get('id')).length)/2;
-    })
+    }),
+
 });

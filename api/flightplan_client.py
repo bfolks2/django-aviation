@@ -85,6 +85,8 @@ class FlightPlanAPIClient(object):
         data = self.field_mapper_logic(self.AIRPORT_MAPPER, json)
 
         airport_serializer = AirportSerializer(data=data)
+        data = self.airport_field_validator(data)
+
         if airport_serializer.is_valid(raise_exception=False):
             airport = Airport.objects.create(**airport_serializer.validated_data)
 
@@ -121,6 +123,13 @@ class FlightPlanAPIClient(object):
                 AirportComm.objects.get_or_create(**airport_comm_serializer.validated_data)
 
         return
+
+    def airport_field_validator(self, data):
+        value = data['name']
+        converted_value = value.lower().title()
+        data['name'] = converted_value
+
+        return data
 
     def runway_field_validator(self, data):
         # These fields come in from the API in raw format
