@@ -27,3 +27,7 @@ tbody tr:nth-child(even) {
 .loading-screen {
   padding-top: 50px;
 }
+
+.comment-input {
+  margin-left: 50px;
+}

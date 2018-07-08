@@ -15,21 +15,30 @@ export default Route.extend({
     let commsPromise = this.store.query('airport-comm', {
       'airport': airportID
     });
-
-    let adapter = this.get('store').adapterFor('airport');
-    let weatherPromise = adapter.airportWeather(airportID, windowID);
-
-    let airportPromise = new Promise((resolve) => {
-      weatherPromise.then(() => {
-        let embedPromise = this.store.findRecord('airport', airportID);
-        resolve(embedPromise);
-      });
+    let postsPromise = this.store.query('post', {
+      'airport': airportID
     });
+    let commentsPromise = this.store.findAll('comment');
+
+    // Nested Promises to make sure the weather is updated/resolved before getting the airport data
+    // let adapter = this.get('store').adapterFor('airport');
+    // let weatherPromise = adapter.airportWeather(airportID, windowID);
+    //
+    // let airportPromise = new Promise((resolve) => {
+    //   weatherPromise.then(() => {
+    //     let embedPromise = this.store.findRecord('airport', airportID);
+    //     resolve(embedPromise);
+    //   });
+    // });
+    let airportPromise = this.store.findRecord('airport', airportID);
 
     return RSVP.hash({
       runways: runwaysPromise,
       comms: commsPromise,
-      airport: airportPromise
+      airport: airportPromise,
+      posts: postsPromise,
+      comments: commentsPromise
+
     });
   }
 });

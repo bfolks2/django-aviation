@@ -3,6 +3,9 @@
   <h3>{{model.airport.region}}</h3>
   <h4>{{model.airport.elevation}}' MSL</h4>
 </div>
+<div class="posts-section">
+  {{post-form posts=model.posts}}
+</div>
 <div class="weather-details">
   <h2>Current Aviation Weather Information</h2>
   {{#if model.airport.hasWeather }}

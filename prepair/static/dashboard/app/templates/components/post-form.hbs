@@ -1,1 +1,17 @@
-{{yield}}
+<h2>Posts and such</h2>
+{{#each posts as |post|}}
+  <div class="post-input">
+    <div class="small-text">
+      <p>Post created {{post.datetimeCreatedFormatted}}</p>
+    </div>
+    <textarea name="post-body">{{post.body}}</textarea>
+  </div>
+  {{#each post.comments as |comment|}}
+    <div class="comment-input">
+      <div class="small-text">
+        <p>Comment created {{comment.datetimeCreatedFormatted}}</p>
+      </div>
+      <textarea name="comment-body">{{comment.body}}</textarea>
+    </div>
+  {{/each}}
+{{/each}}
