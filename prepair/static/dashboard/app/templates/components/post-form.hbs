@@ -1,41 +1,18 @@
-<h2>Member Posts & Comments for {{airport.icao}}</h2>
-{{#if airport.hasPosts}}
-  {{#each posts as |post|}}
-    <div class="post-comment-input">
-      <div class="post-input">
-        <div class="small-text">
-          <p>
-            Post created {{post.datetimeCreatedFormatted}} by {{post.userName}}
-            {{#if post.hasUpdate}}(Last updated {{post.datetimeUpdatedFormatted}}){{/if}}
-          </p>
-        </div>
-        <textarea id="post-area-{{post.id}}" class="post-textarea" name="post-body" disabled>{{post.body}}</textarea>
-        {{#if post.allowUserEditDelete}}
-          <div class="btn-group">
-            <button id="post-edit-{{post.id}}" class="btn btn-primary edit-button onclick=(action EditPost ">Edit</button>
-            <button id="post-delete-{{post.id}}" class="btn btn-danger delete-button">Delete</button>
-          </div>
-        {{/if}}
-      </div>
-      {{#each post.comments as |comment|}}
-        <div class="comment-input">
-          <div class="small-text">
-            <p>
-              Comment created {{comment.datetimeCreatedFormatted}} by {{comment.userName}}
-              {{#if comment.hasUpdate}}(Last updated {{comment.datetimeUpdatedFormatted}}){{/if}}
-            </p>
-          </div>
-          <textarea id="comment-area-{{comment.id}} class="comment-textarea" name="comment-body" disabled>{{comment.body}}</textarea>
-          {{#if comment.allowUserEditDelete}}
-            <div class="btn-group">
-              <button id="comment-edit-{{comment.id}}" class="btn btn-primary edit-button">Edit</button>
-              <button id="comment-delete-{{comment.id}}" class="btn btn-danger delete-button">Delete</button>
-            </div>
-          {{/if}}
-        </div>
-      {{/each}}
+<div class="post-input">
+  <div class="small-text">
+    <p>
+      Post created {{post.datetimeCreatedFormatted}} by {{post.userName}}
+      {{#if post.hasUpdate}}(Last updated {{post.datetimeUpdatedFormatted}}){{/if}}
+    </p>
+  </div>
+  <textarea id="post-area" class="post-textarea" name="post-body" disabled>{{post.body}}</textarea>
+  {{#if post.allowUserEditDelete}}
+    <div class="btn-group">
+      <button id="post-edit" class="btn btn-primary edit-button onclick=(action EditPost ">Edit</button>
+      <button id="post-delete" class="btn btn-danger delete-button">Delete</button>
     </div>
-  {{/each}}
-{{else}}
-  <em>No Posts or Comments for {{airport.icao}}</em>
-{{/if}}
+  {{/if}}
+</div>
+{{#each post.comments as |comment|}}
+  {{comment-form comment=comment}}
+{{/each}}

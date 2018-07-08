@@ -53,6 +53,17 @@
 }}
 </div>
 <div class="posts-section">
-  {{post-form posts=model.posts airport=model.airport}}
+  <h2>Member Posts & Comments for {{model.airport.icao}}</h2>
+  {{#if model.airport.hasPosts}}
+    {{#each model.posts as |post|}}
+      <div class="post-comment-input">
+        {{post-form post=post}}
+      </div>
+    {{/each}}
+  {{else}}
+    <em>No Posts or Comments for {{model.airport.icao}}</em>
+  {{/if}}
 </div>
-{{link-to '- Back to Main Table View -' 'airports' class='back-table-link pull-right'}}
+<div class="back-table-link">
+  {{link-to '- Back to Main Table View -' 'airports'}}
+</div>

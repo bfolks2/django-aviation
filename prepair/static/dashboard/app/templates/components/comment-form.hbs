@@ -1,0 +1,15 @@
+<div class="comment-input">
+  <div class="small-text">
+    <p>
+      Comment created {{comment.datetimeCreatedFormatted}} by {{comment.userName}}
+      {{#if comment.hasUpdate}}(Last updated {{comment.datetimeUpdatedFormatted}}){{/if}}
+    </p>
+  </div>
+  <textarea id="comment-area" class="comment-textarea" name="comment-body" disabled>{{comment.body}}</textarea>
+  {{#if comment.allowUserEditDelete}}
+    <div class="btn-group">
+      <button id="comment-edit" class="btn btn-primary edit-button">Edit</button>
+      <button id="comment-delete" class="btn btn-danger delete-button">Delete</button>
+    </div>
+  {{/if}}
+</div>
