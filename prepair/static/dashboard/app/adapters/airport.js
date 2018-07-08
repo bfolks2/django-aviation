@@ -2,8 +2,8 @@ import ApplicationAdapter from './application';
 
 export default ApplicationAdapter.extend({
 
-  airportWeather(airportID) {
-    const url = this.buildURL('airport', airportID) + "/airport_weather";
+  airportWeather(airportID, windowID) {
+    const url = this.buildURL('airport', airportID) + "/airport_weather?window=" +  windowID;
     return this.ajax(url, 'GET');
   },
 

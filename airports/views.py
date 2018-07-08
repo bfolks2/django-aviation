@@ -22,14 +22,18 @@ class AirportViewSet(PrepairViewSet):
 
     @action(methods=['get'], detail=True, permission_classes=[])
     def airport_weather(self, request, pk=None):
+        # If the window query is non-zero, the weather has already been updated and does not require
+        # another GET request to the external API
+        updated = int(request.GET.get('window', None))
 
-        try:
-            airport = Airport.objects.get(pk=pk)
-        except Airport.DoesNotExist:
-            return False
+        if not updated:
+            try:
+                airport = Airport.objects.get(pk=pk)
+            except Airport.DoesNotExist:
+                return False
 
-        flight_client = FlightPlanAPIClient()
-        pk = flight_client.get(icao=airport.icao)
+            flight_client = FlightPlanAPIClient()
+            pk = flight_client.get(icao=airport.icao)
 
         return Response({'pk': pk})
 

@@ -1,9 +1,12 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
+  session: service(),
 
   model(params) {
+    const windowID = this.get('session.airportID');
     const airportID = params.airport_id;
 
     let runwaysPromise = this.store.query('runway', {
@@ -14,7 +17,7 @@ export default Route.extend({
     });
 
     let adapter = this.get('store').adapterFor('airport');
-    let weatherPromise = adapter.airportWeather(airportID);
+    let weatherPromise = adapter.airportWeather(airportID, windowID);
 
     let airportPromise = new Promise((resolve) => {
       weatherPromise.then(() => {
