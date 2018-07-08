@@ -16,7 +16,7 @@ export default Controller.extend({
       },
       {
         "propertyName": "bearing",
-        "title": "Bearing",
+        "title": "Bearing (°)",
       },
       {
         "propertyName": "length",

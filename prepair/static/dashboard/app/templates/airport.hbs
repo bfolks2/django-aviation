@@ -4,7 +4,7 @@
   <h4>{{model.airport.elevation}}' MSL</h4>
 </div>
 <div class="weather-details">
-  <h2>Current Aviation Weather Information</h2>
+  <h2>Current Aviation Weather Information (Live Updates)</h2>
   {{#if model.airport.hasWeather }}
     <div class="metar">
       {{#if model.airport.metar}}
@@ -53,10 +53,6 @@
 }}
 </div>
 <div class="posts-section">
-  {{#if model.airport.hasPosts}}
-    {{post-form posts=model.posts airport=model.airport}}
-  {{else}}
-    <em>***No Posts or Comments for {{model.airport.icao}}</em>
-  {{/if}}
+  {{post-form posts=model.posts airport=model.airport}}
 </div>
 {{link-to '- Back to Main Table View -' 'airports' class='back-table-link pull-right'}}
