@@ -12,8 +12,8 @@ export default DS.Model.extend({
     datetimeUpdated: DS.attr('date'),
     comments: DS.hasMany('comment'),
 
-    userId: computed('member', function() {
-      return this.get('member.user');
+    userName: computed('member', function() {
+      return this.get('member.user.username');
     }),
 
     datetimeCreatedFormatted: format(

@@ -5,7 +5,7 @@
       <textarea name="post-body">{{post.body}}</textarea>
       <div class="small-text">
         <p>
-          Post created {{post.datetimeCreatedFormatted}} by {{post.userId}}
+          Post created {{post.datetimeCreatedFormatted}} by {{post.userName}}
           {{#if post.hasUpdate}}(Last updated {{post.datetimeUpdatedFormatted}}){{/if}}
         </p>
       </div>
@@ -15,7 +15,7 @@
         <textarea name="comment-body">{{comment.body}}</textarea>
         <div class="small-text">
           <p>
-            Comment created {{comment.datetimeCreatedFormatted}} by {{comment.userId}}
+            Comment created {{comment.datetimeCreatedFormatted}} by {{comment.userName}}
             {{#if comment.hasUpdate}}(Last updated {{comment.datetimeUpdatedFormatted}}){{/if}}
           </p>
         </div>

@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 
 from prepair.views import PrepairViewSet
 from .models import Member
-from .serializers import MemberSerializer
+from .serializers import MemberSerializer, UserSerializer
 from .forms import CreateMemberForm
 
 
@@ -85,4 +85,17 @@ class MemberViewSet(PrepairViewSet):
     serializer_class = MemberSerializer
 
     filter_fields = ('pk', 'user', 'home_airport')
+    iexact_filter_fields = tuple()
+
+
+class UserViewSet(PrepairViewSet):
+    """
+    DRF Viewset for Member objects
+    """
+
+    prepair_model_class = User
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    filter_fields = ('pk', 'username')
     iexact_filter_fields = tuple()

@@ -11,8 +11,8 @@ export default DS.Model.extend({
     datetimeCreated: DS.attr('date'),
     datetimeUpdated: DS.attr('date'),
 
-    userId: computed('member', function() {
-      return this.get('member.user');
+    userName: computed('member', function() {
+      return this.get('member.user.username');
     }),
 
     datetimeCreatedFormatted: format(

@@ -21,7 +21,7 @@ from rest_framework.routers import DefaultRouter
 from prepair import views
 
 from airports.views import AirportViewSet, RunwayViewSet, AirportCommViewSet
-from accounts.views import MemberViewSet
+from accounts.views import MemberViewSet, UserViewSet
 from communication.views import PostViewSet, CommentViewSet
 
 urlpatterns = [
@@ -39,6 +39,7 @@ router.register(r'airports', AirportViewSet, base_name='serializers-airport')
 router.register(r'runways', RunwayViewSet, base_name='serializers-runway')
 router.register(r'airport-comms', AirportCommViewSet, base_name='serializers-airportcomm')
 router.register(r'members', MemberViewSet, base_name='serializers-member')
+router.register(r'users', UserViewSet, base_name='serializers-user')
 router.register(r'posts', PostViewSet, base_name='serializers-post')
 router.register(r'comments', CommentViewSet, base_name='serializers-comment')
 
