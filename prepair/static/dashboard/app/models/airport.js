@@ -12,6 +12,8 @@ export default DS.Model.extend({
     sunset: DS.attr('date'),
     runways: DS.hasMany('runway'),
     comms: DS.hasMany('airport-comm'),
+    members: DS.hasMany('member'),
+    posts: DS.hasMany('post'),
 
     runwayCount: computed('runways.[]', function () {
       return (this.store.peekAll('runway').filterBy('airport.id', this.get('id')).length);
