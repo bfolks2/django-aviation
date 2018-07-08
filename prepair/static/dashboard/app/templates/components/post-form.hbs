@@ -9,11 +9,13 @@
             {{#if post.hasUpdate}}(Last updated {{post.datetimeUpdatedFormatted}}){{/if}}
           </p>
         </div>
-        <textarea class="post-textarea" name="post-body">{{post.body}}</textarea>
-        <div class="btn-group">
-          <button id="post-edit" class="btn btn-primary edit-button">Edit</button>
-          <button id="post-delete" class="btn btn-danger delete-button">Delete</button>
-        </div>
+        <textarea id="post-area-{{post.id}}" class="post-textarea" name="post-body" disabled>{{post.body}}</textarea>
+        {{#if post.allowUserEditDelete}}
+          <div class="btn-group">
+            <button id="post-edit-{{post.id}}" class="btn btn-primary edit-button onclick=(action EditPost ">Edit</button>
+            <button id="post-delete-{{post.id}}" class="btn btn-danger delete-button">Delete</button>
+          </div>
+        {{/if}}
       </div>
       {{#each post.comments as |comment|}}
         <div class="comment-input">
@@ -23,11 +25,13 @@
               {{#if comment.hasUpdate}}(Last updated {{comment.datetimeUpdatedFormatted}}){{/if}}
             </p>
           </div>
-          <textarea class="comment-textarea" name="comment-body">{{comment.body}}</textarea>
-          <div class="btn-group">
-            <button id="comment-edit" class="btn btn-primary edit-button">Edit</button>
-            <button id="comment-delete" class="btn btn-danger delete-button">Delete</button>
-          </div>
+          <textarea id="comment-area-{{comment.id}} class="comment-textarea" name="comment-body" disabled>{{comment.body}}</textarea>
+          {{#if comment.allowUserEditDelete}}
+            <div class="btn-group">
+              <button id="comment-edit-{{comment.id}}" class="btn btn-primary edit-button">Edit</button>
+              <button id="comment-delete-{{comment.id}}" class="btn btn-danger delete-button">Delete</button>
+            </div>
+          {{/if}}
         </div>
       {{/each}}
     </div>

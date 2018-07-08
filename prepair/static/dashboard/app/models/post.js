@@ -3,8 +3,11 @@ import { computed } from '@ember/object';
 import _moment from 'ember-moment/computeds/moment';
 import locale from 'ember-moment/computeds/locale';
 import format from 'ember-moment/computeds/format';
+import { inject as service } from '@ember/service';
 
 export default DS.Model.extend({
+    session: service(),
+
     member: DS.belongsTo('member'),
     airport: DS.belongsTo('airport'),
     body: DS.attr('string'),
@@ -14,6 +17,19 @@ export default DS.Model.extend({
 
     userName: computed('member', function() {
       return this.get('member.user.username');
+    }),
+
+    userID: computed('member', function() {
+      return this.get('member.user.id');
+    }),
+
+    allowUserEditDelete: computed('userID', 'session.userID', function() {
+      const {
+        userID,
+        'session.userID': sessionID
+      } = this.getProperties('userID', 'session.userID');
+
+      return userID == sessionID;
     }),
 
     datetimeCreatedFormatted: format(
