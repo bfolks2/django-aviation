@@ -1,26 +1,36 @@
 <h2>Member Posts & Comments for {{airport.icao}}</h2>
 {{#if airport.hasPosts}}
   {{#each posts as |post|}}
-    <div class="post-input">
-      <textarea name="post-body">{{post.body}}</textarea>
-      <div class="small-text">
-        <p>
-          Post created {{post.datetimeCreatedFormatted}} by {{post.userName}}
-          {{#if post.hasUpdate}}(Last updated {{post.datetimeUpdatedFormatted}}){{/if}}
-        </p>
-      </div>
-    </div>
-    {{#each post.comments as |comment|}}
-      <div class="comment-input">
-        <textarea name="comment-body">{{comment.body}}</textarea>
+    <div class="post-comment-input">
+      <div class="post-input">
         <div class="small-text">
           <p>
-            Comment created {{comment.datetimeCreatedFormatted}} by {{comment.userName}}
-            {{#if comment.hasUpdate}}(Last updated {{comment.datetimeUpdatedFormatted}}){{/if}}
+            Post created {{post.datetimeCreatedFormatted}} by {{post.userName}}
+            {{#if post.hasUpdate}}(Last updated {{post.datetimeUpdatedFormatted}}){{/if}}
           </p>
         </div>
+        <textarea class="post-textarea" name="post-body">{{post.body}}</textarea>
+        <div class="btn-group">
+          <button id="post-edit" class="btn btn-primary edit-button">Edit</button>
+          <button id="post-delete" class="btn btn-danger delete-button">Delete</button>
+        </div>
       </div>
-    {{/each}}
+      {{#each post.comments as |comment|}}
+        <div class="comment-input">
+          <div class="small-text">
+            <p>
+              Comment created {{comment.datetimeCreatedFormatted}} by {{comment.userName}}
+              {{#if comment.hasUpdate}}(Last updated {{comment.datetimeUpdatedFormatted}}){{/if}}
+            </p>
+          </div>
+          <textarea class="comment-textarea" name="comment-body">{{comment.body}}</textarea>
+          <div class="btn-group">
+            <button id="comment-edit" class="btn btn-primary edit-button">Edit</button>
+            <button id="comment-delete" class="btn btn-danger delete-button">Delete</button>
+          </div>
+        </div>
+      {{/each}}
+    </div>
   {{/each}}
 {{else}}
   <em>No Posts or Comments for {{airport.icao}}</em>
