@@ -1,7 +1,24 @@
-<div class="airport-details">
+<div class="main-airport-info">
   <h2><u>{{model.airport.icao}} - {{model.airport.name}}</u></h2>
   <h3>{{model.airport.region}}</h3>
   <h4>{{model.airport.elevation}}' MSL</h4>
+</div>
+<div class="weather-details">
+  <h2>Current Aviation Weather Information</h2>
+  {{#if model.airport.hasWeather }}
+    <div class="metar">
+      {{#if model.airport.metar}}
+        <u>METAR:</u> {{model.airport.metar}}
+      {{/if}}
+    </div>
+    <div class="taf">
+      {{#if model.airport.taf}}
+        <u>TAF:</u> {{model.airport.taf}}
+      {{/if}}
+    </div>
+  {{else}}
+    <em>No Weather Information available for this Airport</em>
+  {{/if}}
 </div>
 <div class="airport-details">
   <h2>Runway List</h2>
@@ -20,7 +37,7 @@
 }}
 </div>
 <div class="airport-details">
-  <h2>Communcation List</h2>
+  <h2>Communcations List</h2>
   {{models-table
   data=model.comms
   columns=columnsForCommTable
@@ -35,4 +52,4 @@
   showPageSize=false
 }}
 </div>
-{{link-to '- Back to Table View -' 'airports'}}
+{{link-to '- Back to Table View -' 'airports' class='back-table-link'}}

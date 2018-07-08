@@ -17,7 +17,8 @@
                 allow users to get up-to-date flight simulating information.  Anytime a user searches for an airport,
                 real-time weather information is displayed, by use of an external API.  Additionally, if the airport
                 does not yet exist in the internal database, all additional static data is then permanently saved into
-                the database (i.e. name, runway info, communication/frequencies, etc).  Users can search across the
+                the database (i.e. name, runway info, communication/frequencies, etc).  The size of the internal airport
+                database grows each time a user searches for a new airport.  Users can search across the
                 internal database of airports for all relevant information, as well as post their own specific reports,
                 or even comment on other user's experiences.
             </p>
@@ -41,7 +42,7 @@
         </div>
 
         <div class="sub-header text-center">
-            <h2>Just here to browse around?  You can view the internal database of airport information <a href="/dashboard/">here</a></h2>
+            <h2>Just here to browse around?  You can view airports already searched for by other users <a href="/dashboard/">here</a></h2>
             <img src="{% static "media/dark_banner.png" %}" style="margin-top: 30px;"/>
             <div class="small-text">
                 <p>The data available through this site is for flight simulation use only and must not be used for real-world aviation.</p>

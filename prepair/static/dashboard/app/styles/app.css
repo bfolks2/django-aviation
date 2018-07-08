@@ -19,3 +19,7 @@ tbody tr:nth-child(even) {
 .icao-column {
   font-weight: bolder;
 }
+
+.back-table-link {
+  font-weight: bold;
+}

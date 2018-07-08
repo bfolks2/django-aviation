@@ -2,10 +2,10 @@ import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
 export default Route.extend({
-  model(params) {
-    const airportID = params.airport_id
 
-    let airportPromise = this.store.findRecord('airport', airportID);
+  model(params) {
+    const airportID = params.airport_id;
+
     let runwaysPromise = this.store.query('runway', {
       'airport': airportID
     });
@@ -13,10 +13,20 @@ export default Route.extend({
       'airport': airportID
     });
 
+    let adapter = this.get('store').adapterFor('airport');
+    let weatherPromise = adapter.airportWeather(airportID);
+
+    let airportPromise = new Promise((resolve) => {
+      weatherPromise.then(() => {
+        let embedPromise = this.store.findRecord('airport', airportID);
+        resolve(embedPromise);
+      });
+    });
+
     return RSVP.hash({
-      airport: airportPromise,
       runways: runwaysPromise,
-      comms: commsPromise
+      comms: commsPromise,
+      airport: airportPromise
     });
   }
 });

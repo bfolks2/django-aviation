@@ -2,6 +2,8 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
 
+  weatherID: null,
+
   init() {
     this.set('columnsForRunwayTable', [
       {

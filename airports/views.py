@@ -1,8 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from prepair.views import PrepairViewSet
 from .models import Airport, Runway, AirportComm
 from .serializers import AirportSerializer, RunwaySerializer, AirportCommSerializer
+
+from api.flightplan_client import FlightPlanAPIClient
 
 
 class AirportViewSet(PrepairViewSet):
@@ -16,6 +19,19 @@ class AirportViewSet(PrepairViewSet):
 
     filter_fields = ('pk', 'icao', 'name', 'region', 'elevation')
     iexact_filter_fields = ('icao', 'name', 'region')
+
+    @action(methods=['get'], detail=True, permission_classes=[])
+    def airport_weather(self, request, pk=None):
+
+        try:
+            airport = Airport.objects.get(pk=pk)
+        except Airport.DoesNotExist:
+            return False
+
+        flight_client = FlightPlanAPIClient()
+        pk = flight_client.get(icao=airport.icao)
+
+        return Response({'pk': pk})
 
 
 class RunwayViewSet(PrepairViewSet):

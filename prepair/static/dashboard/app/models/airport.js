@@ -17,4 +17,13 @@ export default DS.Model.extend({
       return (this.store.peekAll('runway').filterBy('airport.id', this.get('id')).length);
     }),
 
+    hasWeather: computed('metar', 'taf', function () {
+      const {
+        metar,
+        taf
+      } = this.getProperties('metar', 'taf');
+
+      return (metar || taf);
+    }),
+
 });
