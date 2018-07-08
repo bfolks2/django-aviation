@@ -4,4 +4,6 @@ export default Component.extend({
 
   posts: null,
 
+  airport: null,
+
 });

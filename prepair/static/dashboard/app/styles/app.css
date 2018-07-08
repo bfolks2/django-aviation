@@ -28,6 +28,14 @@ tbody tr:nth-child(even) {
   padding-top: 50px;
 }
 
+.airport-header {
+  text-decoration: underline;
+}
+
+.post-input, .comment-input {
+  padding-bottom: 5px;
+}
+
 .comment-input {
   margin-left: 50px;
 }

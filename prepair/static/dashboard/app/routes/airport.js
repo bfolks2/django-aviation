@@ -19,6 +19,7 @@ export default Route.extend({
       'airport': airportID
     });
     let commentsPromise = this.store.findAll('comment');
+    let membersPromise = this.store.findAll('member');
 
     // Nested Promises to make sure the weather is updated/resolved before getting the airport data
     // let adapter = this.get('store').adapterFor('airport');
@@ -37,7 +38,8 @@ export default Route.extend({
       comms: commsPromise,
       airport: airportPromise,
       posts: postsPromise,
-      comments: commentsPromise
+      comments: commentsPromise,
+      members: membersPromise
 
     });
   }

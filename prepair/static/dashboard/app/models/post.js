@@ -12,6 +12,10 @@ export default DS.Model.extend({
     datetimeUpdated: DS.attr('date'),
     comments: DS.hasMany('comment'),
 
+    userId: computed('member', function() {
+      return this.get('member.user');
+    }),
+
     datetimeCreatedFormatted: format(
       locale(
           _moment('datetimeCreated'),
@@ -26,5 +30,14 @@ export default DS.Model.extend({
           'moment.locale'
       ),
       'MMMM DD, YYYY HH:mm'
-    )
+    ),
+
+    hasUpdate: computed('datetimeCreatedFormatted', 'datetimeUpdatedFormatted', function() {
+      const {
+        datetimeCreatedFormatted,
+        datetimeUpdatedFormatted
+      } = this.getProperties('datetimeCreatedFormatted', 'datetimeUpdatedFormatted');
+
+      return datetimeCreatedFormatted !== datetimeUpdatedFormatted;
+    }),
 });
