@@ -59,17 +59,11 @@ export default Controller.extend({
     },
 
     cancel() {
-      this.setProperties({
-        isTextDisabled: true,
-      });
       this.set('createNewPost', false);
       this.disableAllButtons(false);
     },
 
     save() {
-      this.setProperties({
-        isTextDisabled: true,
-      });
       // INSERT SAVING LOGIC
       this.set('createNewPost', false);
       this.disableAllButtons(false);

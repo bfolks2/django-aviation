@@ -64,7 +64,23 @@ export default Component.extend({
       let postRecord = this.get('post');
       postRecord.destroyRecord();
       this.disableAllButtons(false);
-    }
+    },
+
+    createComment() {
+      this.disableAllButtons(true);
+      this.set('createNewComment', true);
+    },
+
+    cancelComment() {
+      this.set('createNewComment', false);
+      this.disableAllButtons(false);
+    },
+
+    saveComment() {
+      // INSERT SAVING LOGIC
+      this.set('createNewComment', false);
+      this.disableAllButtons(false);
+    },
   },
 
   disableAllButtons: function(bool) {
