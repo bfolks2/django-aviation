@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import TextArea from '@ember/component/text-area';
 
 export default Component.extend({
 
