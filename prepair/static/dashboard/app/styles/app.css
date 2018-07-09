@@ -38,7 +38,7 @@ tbody tr:nth-child(even) {
   overflow: hidden;
 }
 
-.post-comment-input:not(:first-of-type) {
+.post-comment-input {
   padding-top: 10px;
 }
 
@@ -57,7 +57,7 @@ tbody tr:nth-child(even) {
   height: 50px;
 }
 
-.edit-button, .delete-button, .add-comment-button, .save-comment-button, .cancel-comment-button {
+.edit-button, .delete-button, .add-comment-button, .save-comment-button, .cancel-comment-button, .add-post-button {
   border-radius: 5px !important;
 }
 
@@ -65,6 +65,6 @@ tbody tr:nth-child(even) {
   margin-right: 5px;
 }
 
-.add-comment-buttons {
+.add-comment-buttons, .add-post-buttons {
   float: right !important;
 }

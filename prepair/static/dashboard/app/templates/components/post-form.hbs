@@ -8,7 +8,7 @@
   {{textarea value=post.body disabled=isTextDisabled class="post-textarea"}}
   <div class="btn-group add-comment-buttons">
     {{#if showAddComment}}
-      <button id="post-add" class="btn btn-primary add-comment-button" disabled={{isButtonDisabled}}>Add Comment</button>
+      <button id="comment-add" class="btn btn-primary add-comment-button" disabled={{isButtonDisabled}}>Add Comment</button>
     {{/if}}
     {{#if showSaveCancel}}
       <button id="post-save" class="btn btn-primary save-comment-button" {{action "save"}}>Save</button>

@@ -45,8 +45,8 @@ export default Component.extend({
         showAddComment: true,
         showSaveCancel: false,
       });
-      this.disableAllButtons(false);
       this.get('post').rollbackAttributes();
+      this.disableAllButtons(false);
     },
 
     save() {
@@ -55,13 +55,15 @@ export default Component.extend({
         showAddComment: true,
         showSaveCancel: false,
       });
+      let postRecord = this.get('post');
+      postRecord.save();
       this.disableAllButtons(false);
-      //INSERT LOGIC TO SAVE NEW POST
     },
 
     delete() {
+      let postRecord = this.get('post');
+      postRecord.destroyRecord();
       this.disableAllButtons(false);
-      //INSERT LOGIC TO DELETE POST
     }
   },
 
