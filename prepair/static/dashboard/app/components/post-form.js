@@ -21,30 +21,39 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.set('isTextDisabled', true);
-    this.set('showAddComment', true);
-    this.set('showSaveCancel', false);
+    this.setProperties({
+      isTextDisabled: true,
+      showAddComment: true,
+      showSaveCancel: false,
+    });
   },
 
   actions: {
     edit() {
-      this.set('isTextDisabled', false);
-      this.set('showAddComment', false);
-      this.set('showSaveCancel', true);
+      this.setProperties({
+        isTextDisabled: false,
+        showAddComment: false,
+        showSaveCancel: true,
+      });
       this.disableAllButtons(true);
     },
 
     cancel() {
-      this.set('isTextDisabled', true);
-      this.set('showAddComment', true);
-      this.set('showSaveCancel', false);
+      this.setProperties({
+        isTextDisabled: true,
+        showAddComment: true,
+        showSaveCancel: false,
+      });
       this.disableAllButtons(false);
+      this.get('post').rollbackAttributes();
     },
 
     save() {
-      this.set('isTextDisabled', true);
-      this.set('showAddComment', true);
-      this.set('showSaveCancel', false);
+      this.setProperties({
+        isTextDisabled: true,
+        showAddComment: true,
+        showSaveCancel: false,
+      });
       this.disableAllButtons(false);
       //INSERT LOGIC TO SAVE NEW POST
     },
