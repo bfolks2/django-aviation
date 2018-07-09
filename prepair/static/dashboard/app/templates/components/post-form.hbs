@@ -5,14 +5,23 @@
       {{#if post.hasUpdate}}(Last updated {{post.datetimeUpdatedFormatted}}){{/if}}
     </p>
   </div>
-  <textarea id="post-area" class="post-textarea" name="post-body" disabled>{{post.body}}</textarea>
+  <textarea id="post-area" class="post-textarea" name="post-body" disabled={{isTextDisabled}}>{{post.body}}</textarea>
+  <div class="btn-group add-comment-buttons">
+    {{#if showAddComment}}
+      <button id="post-add" class="btn btn-primary add-comment-button" disabled={{isButtonDisabled}}>Add Comment</button>
+    {{/if}}
+    {{#if showSaveCancel}}
+      <button id="post-save" class="btn btn-primary save-comment-button">Save</button>
+      <button id="post-cancel" class="btn btn-warning cancel-comment-button" {{action "cancel"}}>Cancel</button>
+    {{/if}}
+  </div>
   {{#if post.allowUserEditDelete}}
-    <div class="btn-group">
-      <button id="post-edit" class="btn btn-primary edit-button onclick=(action EditPost ">Edit</button>
-      <button id="post-delete" class="btn btn-danger delete-button">Delete</button>
+    <div class="btn-group edit-delete-buttons">
+      <button id="post-edit" class="btn btn-primary edit-button" {{action "edit"}} disabled={{isButtonDisabled}}>Edit</button>
+      <button id="post-delete" class="btn btn-danger delete-button" disabled={{isButtonDisabled}}>Delete</button>
     </div>
   {{/if}}
 </div>
 {{#each post.comments as |comment|}}
-  {{comment-form comment=comment}}
+  {{comment-form comment=comment isButtonDisabled=isButtonDisabled disableAllButtons=disableAllButtons}}
 {{/each}}

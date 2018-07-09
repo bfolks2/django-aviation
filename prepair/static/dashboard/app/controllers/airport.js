@@ -3,6 +3,7 @@ import Controller from '@ember/controller';
 export default Controller.extend({
 
   weatherID: null,
+  isButtonDisabled: null,
 
   init() {
     this.set('columnsForRunwayTable', [
@@ -40,6 +41,11 @@ export default Controller.extend({
     ]);
 
     this._super(...arguments);
+    this.set('isButtonDisabled', false);
   },
+
+  disableAllButtons: function(bool) {
+    this.set('isButtonDisabled', bool);
+  }
 
 });

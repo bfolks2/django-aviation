@@ -5,11 +5,17 @@
       {{#if comment.hasUpdate}}(Last updated {{comment.datetimeUpdatedFormatted}}){{/if}}
     </p>
   </div>
-  <textarea id="comment-area" class="comment-textarea" name="comment-body" disabled>{{comment.body}}</textarea>
+  <textarea id="comment-area" class="comment-textarea" name="comment-body" disabled={{isTextDisabled}}>{{comment.body}}</textarea>
+  <div class="btn-group add-comment-buttons">
+    {{#if showSaveCancel}}
+      <button id="comment-save" class="btn btn-primary save-comment-button">Save</button>
+      <button id="comment-cancel" class="btn btn-warning cancel-comment-button" {{action "cancel"}}>Cancel</button>
+    {{/if}}
+  </div>
   {{#if comment.allowUserEditDelete}}
     <div class="btn-group">
-      <button id="comment-edit" class="btn btn-primary edit-button">Edit</button>
-      <button id="comment-delete" class="btn btn-danger delete-button">Delete</button>
+      <button id="comment-edit" class="btn btn-primary edit-button" {{action "edit"}} disabled={{isButtonDisabled}}>Edit</button>
+      <button id="comment-delete" class="btn btn-danger delete-button" disabled={{isButtonDisabled}}>Delete</button>
     </div>
   {{/if}}
 </div>

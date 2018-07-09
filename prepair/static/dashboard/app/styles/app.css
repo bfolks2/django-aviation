@@ -34,13 +34,12 @@ tbody tr:nth-child(even) {
   text-decoration: underline;
 }
 
-.post-comment-input:not(:first-of-type) {
-  padding-top: 10px;
+.post-comment-input, .post-input {
+  overflow: hidden;
 }
 
-.post-comment-input:not(:last-of-type) {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #c6c6c6;
+.post-comment-input:not(:first-of-type) {
+  padding-top: 10px;
 }
 
 .post-input, .comment-input {
@@ -58,10 +57,14 @@ tbody tr:nth-child(even) {
   height: 50px;
 }
 
-.edit-button, .delete-button {
+.edit-button, .delete-button, .add-comment-button, .save-comment-button, .cancel-comment-button {
   border-radius: 5px !important;
 }
 
-.edit-button {
-  margin-right: 10px;
+.edit-button, .save-comment-button {
+  margin-right: 5px;
+}
+
+.add-comment-buttons {
+  float: right !important;
 }

@@ -57,7 +57,7 @@
   {{#if model.airport.hasPosts}}
     {{#each model.posts as |post|}}
       <div class="post-comment-input">
-        {{post-form post=post}}
+        {{post-form post=post isButtonDisabled=isButtonDisabled disableAllButtons=disableAllButtons}}
       </div>
     {{/each}}
   {{else}}
