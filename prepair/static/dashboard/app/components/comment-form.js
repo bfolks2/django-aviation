@@ -34,6 +34,19 @@ export default Component.extend({
       this.set('isTextDisabled', true);
       this.set('showSaveCancel', false);
       this.disableAllButtons(false);
+    },
+
+    save() {
+      this.set('isTextDisabled', true);
+      this.set('showAddComment', true);
+      this.set('showSaveCancel', false);
+      this.disableAllButtons(false);
+      //INSERT LOGIC TO SAVE NEW POST
+    },
+
+    delete() {
+      this.disableAllButtons(false);
+      //INSERT LOGIC TO DELETE POST
     }
   },
 

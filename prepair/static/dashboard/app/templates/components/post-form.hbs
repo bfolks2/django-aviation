@@ -11,14 +11,14 @@
       <button id="post-add" class="btn btn-primary add-comment-button" disabled={{isButtonDisabled}}>Add Comment</button>
     {{/if}}
     {{#if showSaveCancel}}
-      <button id="post-save" class="btn btn-primary save-comment-button">Save</button>
+      <button id="post-save" class="btn btn-primary save-comment-button" {{action "save"}}>Save</button>
       <button id="post-cancel" class="btn btn-warning cancel-comment-button" {{action "cancel"}}>Cancel</button>
     {{/if}}
   </div>
   {{#if post.allowUserEditDelete}}
     <div class="btn-group edit-delete-buttons">
       <button id="post-edit" class="btn btn-primary edit-button" {{action "edit"}} disabled={{isButtonDisabled}}>Edit</button>
-      <button id="post-delete" class="btn btn-danger delete-button" disabled={{isButtonDisabled}}>Delete</button>
+      <button id="post-delete" class="btn btn-danger delete-button" {{action "delete"}} disabled={{isButtonDisabled}}>Delete</button>
     </div>
   {{/if}}
 </div>
