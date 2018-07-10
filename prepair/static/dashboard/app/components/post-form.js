@@ -72,9 +72,11 @@ export default Component.extend({
     },
 
     delete() {
-      let postRecord = this.get('post');
-      postRecord.destroyRecord();
-      this.disableAllButtons(false);
+      if (confirm('Are you sure you want to delete this post?')) {
+        let postRecord = this.get('post');
+        postRecord.destroyRecord();
+        this.disableAllButtons(false);
+      }
     },
 
     createComment() {

@@ -55,9 +55,11 @@ export default Component.extend({
     },
 
     delete() {
-      let commentRecord = this.get('comment');
-      commentRecord.destroyRecord();
-      this.disableAllButtons(false);
+      if (confirm('Are you sure you want to delete this comment?')) {
+        let commentRecord = this.get('comment');
+        commentRecord.destroyRecord();
+        this.disableAllButtons(false);
+      }
     }
   },
 
