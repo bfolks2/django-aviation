@@ -49,13 +49,15 @@ export default Component.extend({
         isTextDisabled: true,
         showSaveCancel: false,
       });
+      let commentRecord = this.get('comment');
+      commentRecord.save();
       this.disableAllButtons(false);
-      //INSERT LOGIC TO SAVE NEW POST
     },
 
     delete() {
+      let commentRecord = this.get('comment');
+      commentRecord.destroyRecord();
       this.disableAllButtons(false);
-      //INSERT LOGIC TO DELETE POST
     }
   },
 

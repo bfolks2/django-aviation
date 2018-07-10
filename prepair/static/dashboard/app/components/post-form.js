@@ -7,6 +7,7 @@ import { computed } from '@ember/object';
 export default Component.extend({
 
   session: service(),
+  store: service(),
 
   /**
    * The post bound to this component.
@@ -87,7 +88,14 @@ export default Component.extend({
     },
 
     saveComment() {
-      // INSERT SAVING LOGIC
+      let user = this.get('store').peekRecord('user', this.get('session.userID'));
+      let comment = this.get('store').createRecord('comment', {
+        member: user.member,
+        post: this.get('post'),
+        body: this.get('newCommentBody'),
+      });
+      comment.save();
+
       this.set('createNewComment', false);
       this.disableAllButtons(false);
     },

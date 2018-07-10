@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import TextArea from '@ember/component/text-area';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 
@@ -9,6 +10,7 @@ export default Controller.extend({
   weatherID: null,
   isButtonDisabled: null,
   createNewPost: null,
+  newBody: null,
 
   showButtons: computed('session.userID', function() {
     return this.get('session.userID') !== 0;
@@ -61,18 +63,25 @@ export default Controller.extend({
   },
 
   actions: {
-    create() {
+    createNew() {
       this.disableAllButtons(true);
       this.set('createNewPost', true);
     },
 
-    cancel() {
+    cancelNew() {
       this.set('createNewPost', false);
       this.disableAllButtons(false);
     },
 
-    save() {
-      // INSERT SAVING LOGIC
+    saveNew() {
+      let user = this.store.peekRecord('user', this.get('session.userID'));
+      let post = this.store.createRecord('post', {
+        member: user.member,
+        airport: this.get('model.airport'),
+        body: this.get('newBody'),
+      });
+      post.save();
+
       this.set('createNewPost', false);
       this.disableAllButtons(false);
     },

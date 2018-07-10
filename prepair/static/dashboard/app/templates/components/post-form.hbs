@@ -24,7 +24,7 @@
 </div>
 <div class="comment-input">
   {{#if createNewComment}}
-    {{textarea class="comment-textarea"}}
+    {{textarea class="comment-textarea" value=newCommentBody}}
     <div class="btn-group add-comment-buttons">
       <button id="comment-save" class="btn btn-primary save-comment-button" {{action "saveComment"}}>Save</button>
       <button id="comment-cancel" class="btn btn-warning cancel-comment-button" {{action "cancelComment"}}>Cancel</button>

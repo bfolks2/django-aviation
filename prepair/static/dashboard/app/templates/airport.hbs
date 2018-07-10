@@ -55,19 +55,19 @@
 <div class="posts-section">
   <h2>Member Posts & Comments for {{model.airport.icao}}</h2>
   {{#if showButtons}}
-    <button id="post-add" class="btn btn-primary add-post-button" disabled={{isButtonDisabled}} {{action "create"}}>Add New Post</button>
+    <button id="post-add" class="btn btn-primary add-post-button" disabled={{isButtonDisabled}} {{action "createNew"}}>Add New Post</button>
   {{/if}}
   <div class="post-input">
     {{#if createNewPost}}
-      {{textarea class="post-textarea"}}
+      {{textarea class="post-textarea" value=newBody}}
       <div class="btn-group add-post-buttons">
-        <button id="post-save" class="btn btn-primary save-comment-button" {{action "save"}}>Save</button>
-        <button id="post-cancel" class="btn btn-warning cancel-comment-button" {{action "cancel"}}>Cancel</button>
+        <button id="post-save" class="btn btn-primary save-comment-button" {{action "saveNew"}}>Save</button>
+        <button id="post-cancel" class="btn btn-warning cancel-comment-button" {{action "cancelNew"}}>Cancel</button>
       </div>
     {{/if}}
   </div>
   {{#if model.airport.hasPosts}}
-    {{#each model.posts as |post|}}
+    {{#each model.airport.posts as |post|}}
       <div class="post-comment-input">
         {{post-form post=post isButtonDisabled=isButtonDisabled disableAllButtons=disableAllButtons}}
       </div>
