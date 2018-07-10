@@ -1,7 +1,12 @@
 import Component from '@ember/component';
 import TextArea from '@ember/component/text-area';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+
 
 export default Component.extend({
+
+  session: service(),
 
   /**
    * The post bound to this component.
@@ -19,6 +24,11 @@ export default Component.extend({
   isButtonDisabled: null,
   showAddComment: null,
   showSaveCancel: null,
+
+  showButtons: computed('session.userID', function() {
+    return this.get('session.userID') !== 0;
+  }),
+
 
   init() {
     this._super(...arguments);

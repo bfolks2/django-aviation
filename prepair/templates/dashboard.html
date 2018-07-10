@@ -25,5 +25,6 @@
         <img src="{% static 'dashboard/dist/assets/images/departure.png' %}" style="height: 75px; width: 100px">
         <span class="large-inline">Airport Dashboard</span>
     </div>
+    <input id="csrfmiddlewaretokennav" name="csrfmiddlewaretokennav" type="hidden" value="{{ csrf_token }}"/>
     <div id="emberRoot"></div>
 {% endblock %}

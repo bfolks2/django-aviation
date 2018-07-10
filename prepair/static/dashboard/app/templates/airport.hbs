@@ -54,7 +54,9 @@
 </div>
 <div class="posts-section">
   <h2>Member Posts & Comments for {{model.airport.icao}}</h2>
-  <button id="post-add" class="btn btn-primary add-post-button" disabled={{isButtonDisabled}} {{action "create"}}>Add New Post</button>
+  {{#if showButtons}}
+    <button id="post-add" class="btn btn-primary add-post-button" disabled={{isButtonDisabled}} {{action "create"}}>Add New Post</button>
+  {{/if}}
   <div class="post-input">
     {{#if createNewPost}}
       {{textarea class="post-textarea"}}
