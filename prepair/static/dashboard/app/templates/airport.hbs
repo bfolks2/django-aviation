@@ -56,6 +56,8 @@
   <h2>Member Posts & Comments for {{model.airport.icao}}</h2>
   {{#if showButtons}}
     <button id="post-add" class="btn btn-primary add-post-button" disabled={{isButtonDisabled}} {{action "createNew"}}>Add New Post</button>
+  {{else}}
+    <p class="alert-warning post-input text-center">***You must Register/Login to Add Posts and Comments to {{model.airport.icao}}***</p>
   {{/if}}
   <div class="post-input">
     {{#if createNewPost}}
