@@ -10,10 +10,25 @@ from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveMode
     DestroyModelMixin
 
 from api.flightplan_client import FlightPlanAPIClient
+from accounts.models import Member
 
 
 def index(request):
-    return render(request, 'index.html')
+    user = request.user
+    data = {}
+
+    if user.id:
+        try:
+            member = Member.objects.get(user=user)
+            home_airport_pk = member.home_airport.pk
+            home_airport_icao = member.home_airport.icao
+            data = {'home_airport_pk': home_airport_pk, 'home_airport_icao': home_airport_icao}
+        except Member.DoesNotExist:
+            pass  # Data error, do not return empty dictionary
+        except Member.MultipleObjectsReturned:
+            pass  # Data error, do not return empty dictionary
+
+    return render(request, 'index.html', data)
 
 
 def redirect_icao(request):

@@ -80,3 +80,8 @@ tbody tr:nth-child(even) {
   font-size: 2.5em;
   font-weight: bold;
 }
+
+.no-posts-notification {
+  font-style: italic;
+  margin-top: 10px;
+}

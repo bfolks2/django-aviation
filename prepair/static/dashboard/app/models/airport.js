@@ -31,7 +31,7 @@ export default DS.Model.extend({
       return (metar || taf);
     }),
 
-    hasPosts: computed('posts', function () {
+    hasPosts: computed('posts.[]', function () {
       return this.get('posts').length > 0;
     }),
 

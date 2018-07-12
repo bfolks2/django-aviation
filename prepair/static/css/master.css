@@ -98,3 +98,9 @@ span.glyphicon-wrench {
     font-size: 2.0em;
     vertical-align: bottom;
 }
+
+.home-airport-index {
+    font-weight: bold;
+    font-size: 1.25em;
+    margin-top: 10px;
+}

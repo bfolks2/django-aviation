@@ -37,6 +37,11 @@
                 <div class="main-btn">
                     <input id="submit-btn" class="btn btn-primary" type="submit" value="Search" disabled>
                 </div>
+                {% if home_airport_pk %}
+                    <div class="home-airport-index">
+                        <a href="dashboard/airport/{{ home_airport_pk }}">Home Airport ({{ home_airport_icao }})</a>
+                    </div>
+                {% endif %}
                 {% csrf_token %}
             </form>
         </div>
