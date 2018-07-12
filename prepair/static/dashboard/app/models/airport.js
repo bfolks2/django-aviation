@@ -1,7 +1,10 @@
 import DS from 'ember-data';
+import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 
 export default DS.Model.extend({
+    session: service(),
+
     icao: DS.attr('string'),
     name: DS.attr('string'),
     region: DS.attr('string'),
@@ -30,6 +33,16 @@ export default DS.Model.extend({
 
     hasPosts: computed('posts', function () {
       return this.get('posts').length > 0;
+    }),
+
+    isCurrentUserHome: computed('session.userID', 'members.[]', function() {
+      const {
+        id,
+        'session.userID': userID,
+      } = this.getProperties('id', 'session.userID');
+
+      let peekMembers = this.store.peekAll('member').filterBy('homeAirport.id', id).filterBy('user.id', userID.toString());
+      return peekMembers.length > 0;
     }),
 
 });

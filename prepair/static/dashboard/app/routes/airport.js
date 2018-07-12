@@ -23,16 +23,15 @@ export default Route.extend({
     let usersPromise = this.store.findAll('user');
 
     // Nested Promises to make sure the weather is updated/resolved before getting the airport data
-    // let adapter = this.get('store').adapterFor('airport');
-    // let weatherPromise = adapter.airportWeather(airportID, windowID);
-    //
-    // let airportPromise = new Promise((resolve) => {
-    //   weatherPromise.then(() => {
-    //     let embedPromise = this.store.findRecord('airport', airportID);
-    //     resolve(embedPromise);
-    //   });
-    // });
-    let airportPromise = this.store.findRecord('airport', airportID);
+    let adapter = this.get('store').adapterFor('airport');
+    let weatherPromise = adapter.airportWeather(airportID, windowID);
+
+    let airportPromise = new Promise((resolve) => {
+      weatherPromise.then(() => {
+        let embedPromise = this.store.findRecord('airport', airportID);
+        resolve(embedPromise);
+      });
+    });
 
     return RSVP.hash({
       runways: runwaysPromise,

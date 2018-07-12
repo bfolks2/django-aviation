@@ -63,6 +63,19 @@ export default Controller.extend({
   },
 
   actions: {
+    makeHome() {
+      const {
+        'session.userID': userID,
+        'model.airport': airport,
+      } = this.getProperties('session.userID','model.airport');
+
+      let user = this.store.peekRecord('user', userID);
+      let member = user.memberInstance;
+
+      member.setProperties({'homeAirport': airport});
+      member.save()
+    },
+
     createNew() {
       this.disableAllButtons(true);
       this.set('createNewPost', true);

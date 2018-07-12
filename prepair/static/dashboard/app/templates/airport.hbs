@@ -1,5 +1,12 @@
 <div class="main-airport-info">
   <h2 class="airport-header">{{model.airport.icao}} - {{model.airport.name}}</h2>
+  {{#if showButtons}}
+    {{#if model.airport.isCurrentUserHome}}
+      <h3 class="glyphicon glyphicon-star home-button-alignment"></h3>
+    {{else}}
+      <button class="btn btn-info home-button-alignment" {{action "makeHome"}}>Make {{model.airport.icao}} my Home Airport</button>
+    {{/if}}
+  {{/if}}
   <h3>{{model.airport.region}}</h3>
   <h4>{{model.airport.elevation}}' MSL</h4>
 </div>

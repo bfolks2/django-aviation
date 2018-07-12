@@ -32,6 +32,7 @@ tbody tr:nth-child(even) {
 
 .airport-header {
   text-decoration: underline;
+  display: inline-block !important;
 }
 
 .post-comment-input, .post-input {
@@ -67,4 +68,15 @@ tbody tr:nth-child(even) {
 
 .add-comment-buttons, .add-post-buttons {
   float: right !important;
+}
+
+.home-button-alignment {
+  margin-left: 15px;
+  vertical-align: baseline;
+}
+
+.glyphicon-star {
+  color: #afb200;
+  font-size: 2.5em;
+  font-weight: bold;
 }
