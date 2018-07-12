@@ -10,8 +10,13 @@ export default DS.Model.extend({
         id,
       } = this.getProperties('id');
 
-      let memberId = this.store.peekAll('member').filterBy('user.id', id.toString()).getEach('id').uniq();
-      return this.store.peekRecord('member', memberId);
+      let memberId = this.store.peekAll('member').filterBy('user.id', id.toString()).getEach('id');
+
+      if (memberId.length > 0) {
+        return this.store.peekRecord('member', memberId[0]);
+      } else {
+        return null;
+      }
     }),
 });
 
