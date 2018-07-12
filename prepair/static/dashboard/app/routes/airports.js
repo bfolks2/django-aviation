@@ -3,12 +3,12 @@ import RSVP from 'rsvp';
 
 export default Route.extend({
   model() {
-    let airportsPromise = this.store.findAll('airport');
-    let runwaysPromise = this.store.findAll('runway');
+    let airports = this.modelFor('application').airports;
+    let runways = this.modelFor('application').runways;
 
     return RSVP.hash({
-      airports: airportsPromise,
-      runways: runwaysPromise
+      airports: airports,
+      runways: runways
     });
   }
 });

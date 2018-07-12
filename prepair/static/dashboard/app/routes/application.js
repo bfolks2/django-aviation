@@ -9,6 +9,16 @@ export default Route.extend({
     session.initializeVariables();
   },
 
+  model() {
+    let airportsPromise = this.store.findAll('airport');
+    let runwaysPromise = this.store.findAll('runway');
+
+    return {
+      airports: airportsPromise,
+      runways: runwaysPromise
+    };
+  },
+
   afterModel() {
     const {
       'session.airportID': airportID,
