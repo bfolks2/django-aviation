@@ -6,12 +6,14 @@ from .models import Airport, Runway, AirportComm
 from .serializers import AirportSerializer, RunwaySerializer, AirportCommSerializer
 
 from api.flightplan_client import FlightPlanAPIClient
-
+from prepair.permissions import IsSuperUserOrReadOnly
 
 class AirportViewSet(PrepairViewSet):
     """
     DRF Viewset for Airport objects
     """
+
+    permission_classes = (IsSuperUserOrReadOnly,)
 
     prepair_model_class = Airport
     queryset = Airport.objects.all()
@@ -43,6 +45,8 @@ class RunwayViewSet(PrepairViewSet):
     DRF Viewset for Runway objects
     """
 
+    permission_classes = (IsSuperUserOrReadOnly,)
+
     prepair_model_class = Runway
     queryset = Runway.objects.all()
     serializer_class = RunwaySerializer
@@ -55,6 +59,8 @@ class AirportCommViewSet(PrepairViewSet):
     """
     DRF Viewset for AirportComm objects
     """
+
+    permission_classes = (IsSuperUserOrReadOnly,)
 
     prepair_model_class = AirportComm
     queryset = AirportComm.objects.all()
