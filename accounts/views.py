@@ -2,9 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 
-from django.urls import reverse
 from django.http import HttpResponseRedirect
 
+from prepair.utils import get_redirect_link
 from prepair.views import PrepairViewSet
 from .models import Member
 from .serializers import MemberSerializer, UserSerializer
@@ -48,8 +48,10 @@ def register_member(request):
 
 def login_view(request):
 
+    redirect_to = get_redirect_link(request)
+
     if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('index-view'))
+        return HttpResponseRedirect(redirect_to)
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -57,22 +59,25 @@ def login_view(request):
 
         db_user_query = User.objects.filter(username=username)
         if db_user_query.exists() and not db_user_query.first().is_active:
-            return render(request, 'accounts/login.html', {'username': username, 'inactive': True})
+            return render(request, 'accounts/login.html', {'username': username, 'inactive': True, 'next': redirect_to})
 
         user = authenticate(username=username, password=password)
 
         if user:
             login(request, user)
-            return HttpResponseRedirect(reverse('index-view'))
+            return HttpResponseRedirect(redirect_to)
         else:
-            return render(request, 'accounts/login.html', {'invalid': True})
+            return render(request, 'accounts/login.html', {'invalid': True, 'next': redirect_to})
     else:
-        return render(request, 'accounts/login.html')
+        data = {'next': redirect_to}
+        return render(request, 'accounts/login.html', data)
 
 
 def logout_view(request):
+    redirect_to = get_redirect_link(request)
+
     logout(request)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(redirect_to)
 
 
 class MemberViewSet(PrepairViewSet):
