@@ -5,11 +5,13 @@ from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from six.moves.urllib.parse import urlparse
 
+from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.viewsets import GenericViewSet as DRFGenericViewset
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin, \
     DestroyModelMixin
 
+from .renderers import PrepairAPIRenderer
 from api.flightplan_client import FlightPlanAPIClient
 from accounts.models import Member
 
@@ -80,6 +82,9 @@ class PrepairViewSet(CreateModelMixin,
     Default CRUD Methods are all inherited through DRF Mixins
     """
 
+    prepair_browsable = ['get', 'head', 'options']
+
+    renderer_classes = (JSONRenderer, PrepairAPIRenderer)
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
     # These values are set within the subclass Model Viewsets

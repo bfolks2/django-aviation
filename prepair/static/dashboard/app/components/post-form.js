@@ -25,6 +25,8 @@ export default Component.extend({
   isButtonDisabled: null,
   showAddComment: null,
   showSaveCancel: null,
+  createNewComment: null,
+  newCommentBody: null,
 
   showButtons: computed('session.userID', function() {
     return this.get('session.userID') !== 0;
@@ -85,7 +87,10 @@ export default Component.extend({
     },
 
     cancelComment() {
-      this.set('createNewComment', false);
+      this.setProperties({
+        newCommentBody: null,
+        createNewComment: false,
+      });
       this.disableAllButtons(false);
     },
 
@@ -98,7 +103,10 @@ export default Component.extend({
       });
       comment.save();
 
-      this.set('createNewComment', false);
+      this.setProperties({
+        newCommentBody: null,
+        createNewComment: false,
+      });
       this.disableAllButtons(false);
     },
   },

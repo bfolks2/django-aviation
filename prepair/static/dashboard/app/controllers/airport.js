@@ -82,7 +82,10 @@ export default Controller.extend({
     },
 
     cancelNew() {
-      this.set('createNewPost', false);
+      this.setProperties({
+        newBody: null,
+        createNewPost: false,
+      });
       this.disableAllButtons(false);
     },
 
@@ -95,7 +98,10 @@ export default Controller.extend({
       });
       post.save();
 
-      this.set('createNewPost', false);
+      this.setProperties({
+        newBody: null,
+        createNewPost: false,
+      });
       this.disableAllButtons(false);
     },
   }
