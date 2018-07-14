@@ -13,12 +13,12 @@
 <div class="weather-details">
   <h2>Current Aviation Weather Information (Live Updates)</h2>
   {{#if model.airport.hasWeather }}
-    <div class="metar">
+    <div class="metar-section">
       {{#if model.airport.metar}}
         <u>METAR:</u> {{model.airport.metar}}
       {{/if}}
     </div>
-    <div class="taf">
+    <div class="taf-section">
       {{#if model.airport.taf}}
         <u>TAF:</u> {{model.airport.taf}}
       {{/if}}

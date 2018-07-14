@@ -14,16 +14,22 @@
             </p>
             <p>
                 This site is built to allow users to get up-to-date flight simulating information.  Anytime a user
-                searches for an airport, real-time weather information is displayed, by use of an external API.
-                Additionally, if the airport searched by a user does not yet exist in this site's internal database,
-                all additional static data (i.e. name, runway info, communication/frequencies, etc) is then permanently
-                saved into the internal database using this site's own <a href="/serializers/">REST API</a>.  The size
-                of the internal airport database grows each time a user searches for a new airport.  Users can search
-                across the internal database of airports for all relevant information, as well as post their own
-                specific reports, or even comment on other user's experiences.
+                searches for an airport, real-time aviation weather information (METAR/TAF) is displayed, by use of an
+                external API.  Additionally, if the airport searched for by a user does not yet exist in this site's
+                internal database, all additional static data (i.e. name, runway info, communication/frequencies, etc)
+                is then permanently saved into the internal database using this site's own <a href="/serializers/">REST API</a>.
+                The size of this site's internal airport database grows each time a user searches for a new airport.
+                All users can search across the internal database of airports for all relevant information.  Once
+                registered, users can also post their own specific reports, or even comment on other user's experiences.
+            </p>
+            <p>
+                User Registration is left intentionally simple for the time being.  No email verification required.
+                While registration is not necessary to use the site, it does add additional functionality.  (In the
+                unlikely event that this site grows into the thousands of users, email-hash verification will be
+                implemented to prevent spam accounts).
             </p>
             <p class="bold-text">
-                Powered by Python/Django and Ember.js
+                ***Powered by Python/Django and Ember.js***
             </p>
         </div>
         <div class="sub-header text-center">

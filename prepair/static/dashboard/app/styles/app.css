@@ -35,6 +35,10 @@ tbody tr:nth-child(even) {
   display: inline-block !important;
 }
 
+.taf-section {
+  margin-top: 20px;
+}
+
 .post-comment-input, .post-input {
   overflow: hidden;
 }
