@@ -80,7 +80,11 @@ class FlightPlanAPIClient(object):
         # If the external API dpes not return data
         response_code = response.status_code
         if not response_code == 200:
-            return {'error': response_code}
+            # If this is an entirely new airport return an error, else return the current airport data
+            if not airport:
+                return {'error': response_code}
+            else:
+                return {'pk': airport.pk}
 
         json = response.json()
 
