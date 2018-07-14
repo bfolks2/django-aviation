@@ -3,7 +3,7 @@ import re
 from airports.serializers import AirportSerializer, RunwaySerializer, AirportCommSerializer
 from airports.models import Airport, Runway, AirportComm
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 class FlightPlanAPIClient(object):
     """
@@ -51,6 +51,22 @@ class FlightPlanAPIClient(object):
         self.http_session = requests.Session()
 
     def get(self, icao):
+
+        airport = None
+        icao_db = icao.upper()
+        query = Airport.objects.filter(icao=icao_db)
+
+        # If an Airport already exists, get it.  Otherwise create it and all its Foreign Key relations
+        if query.exists():
+            airport = query.get()
+            # Check the last time the weather was updated.  This site has limited access to the external API, so to
+            # avoid overloading with requests, we do not need to hit the external API if the airport already exists
+            # and the weather was updated in the last 30 minutes
+            if airport.last_weather:
+                difference = (datetime.now(timezone.utc) - airport.last_weather).seconds
+                if difference < 1800:
+                    return airport.pk
+
         url = u'{}nav/airport/{}'.format(self.HOST, icao)
 
         headers = {
@@ -61,29 +77,22 @@ class FlightPlanAPIClient(object):
 
         response = self.http_session.get(url, headers=headers)
 
+        # If the external API dpes not return data
         if not response.status_code == 200:
             return None
 
         json = response.json()
 
-        icao_db = icao.upper()
-        query = Airport.objects.filter(icao=icao_db)
-
-        # If an Airport already exists, get it.  Otherwise create it and all its Foreign Key relations
-        if query.exists():
-            airport = query.get()
-        else:
+        if not airport:
             airport = self.create_airport(json)
 
-        if not airport:
-            return None
-
         weather_data = self.set_weather_data(json)
-        if weather_data:
+        weather_data.update({'last_weather': datetime.now()})
+        if weather_data and airport:
             Airport.objects.filter(pk=airport.pk).update(**weather_data)
 
         # Return the updated Airport pk to the view to handle the details page
-        return airport.pk
+        return airport.pk if airport else None
 
     def create_airport(self, json):
 
