@@ -18,6 +18,17 @@ def index(request):
     user = request.user
     data = {}
 
+    if request.POST:
+        icao = request.POST.get('icao', None)
+
+        client = FlightPlanAPIClient()
+        pk = client.get(icao=icao.lower())
+
+        if pk:
+            return HttpResponseRedirect(reverse('dashboard') + '/?airportpk={}'.format(pk))
+        else:
+            return render(request, 'index.html', {'bad_request': True, 'icao': icao})
+
     if user.id:
         try:
             member = Member.objects.get(user=user)
@@ -31,15 +42,6 @@ def index(request):
             pass  # Data error, do not return empty dictionary
 
     return render(request, 'index.html', data)
-
-
-def redirect_icao(request):
-    icao = request.POST.get('icao', None)
-
-    client = FlightPlanAPIClient()
-    pk = client.get(icao=icao.lower())
-
-    return HttpResponseRedirect(reverse('dashboard') + '/?airportpk={}'.format(pk))
 
 
 class DashboardTemplateView(TemplateView):

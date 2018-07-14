@@ -27,7 +27,6 @@ from communication.views import PostViewSet, CommentViewSet
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index-view'),
-    url(r'^redirect-icao$', views.redirect_icao, name='redirect-icao'),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^dashboard/?', views.DashboardTemplateView.as_view(), name='dashboard'),
     url(r'^api-auth/', include('rest_framework.urls')),

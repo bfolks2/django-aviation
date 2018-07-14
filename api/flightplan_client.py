@@ -60,6 +60,10 @@ class FlightPlanAPIClient(object):
         }
 
         response = self.http_session.get(url, headers=headers)
+
+        if not response.status_code == 200:
+            return None
+
         json = response.json()
 
         icao_db = icao.upper()
