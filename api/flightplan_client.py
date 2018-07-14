@@ -65,7 +65,7 @@ class FlightPlanAPIClient(object):
             if airport.last_weather:
                 difference = (datetime.now(timezone.utc) - airport.last_weather).seconds
                 if difference < 1800:
-                    return airport.pk
+                    return {'pk': airport.pk}
 
         url = u'{}nav/airport/{}'.format(self.HOST, icao)
 
@@ -78,8 +78,9 @@ class FlightPlanAPIClient(object):
         response = self.http_session.get(url, headers=headers)
 
         # If the external API dpes not return data
-        if not response.status_code == 200:
-            return None
+        response_code = response.status_code
+        if not response_code == 200:
+            return {'error': response_code}
 
         json = response.json()
 
@@ -92,7 +93,7 @@ class FlightPlanAPIClient(object):
             Airport.objects.filter(pk=airport.pk).update(**weather_data)
 
         # Return the updated Airport pk to the view to handle the details page
-        return airport.pk if airport else None
+        return {'pk': airport.pk} if airport else {'pk': None}
 
     def create_airport(self, json):
 

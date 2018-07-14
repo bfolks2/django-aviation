@@ -29,8 +29,12 @@
         <div class="sub-header text-center">
             <h1>Airport Search</h1>
 
-            {% if bad_request %}
-                <h2 class='bg-warning text-center'>Unable to process your request for <em>{{ icao }}</em>.  Make sure this is an active ICAO.</h2>
+            {% if error_code %}
+                <h2 class='bg-warning text-center'>{{ error_code }}:  Unable to process your request for <em>{{ icao }}</em>.  Make sure this is an active ICAO.</h2>
+            {% endif %}
+
+            {% if over_limit %}
+                <h2 class='bg-warning text-center'>Sorry, this site has reached it's limit with FlightPlanDatabase.  Please try again in a few hours.</h2>
             {% endif %}
 
             <form class="icao-form" method="POST">

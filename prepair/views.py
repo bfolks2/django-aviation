@@ -22,12 +22,17 @@ def index(request):
         icao = request.POST.get('icao', None)
 
         client = FlightPlanAPIClient()
-        pk = client.get(icao=icao.lower())
+        response = client.get(icao=icao.lower())
 
-        if pk:
+        if response.get('pk'):
+            pk = response.get('pk')
             return HttpResponseRedirect(reverse('dashboard') + '/?airportpk={}'.format(pk))
         else:
-            return render(request, 'index.html', {'bad_request': True, 'icao': icao})
+            error_code = response.get('error')
+            if error_code == 429:
+                return render(request, 'index.html', {'over_limit': True})
+            else:
+                return render(request, 'index.html', {'error_code': error_code, 'icao': icao})
 
     if user.id:
         try:

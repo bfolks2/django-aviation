@@ -35,7 +35,8 @@ class AirportViewSet(PrepairViewSet):
                 return False
 
             flight_client = FlightPlanAPIClient()
-            pk = flight_client.get(icao=airport.icao)
+            response = flight_client.get(icao=airport.icao)
+            pk = response.get('pk')
 
         return Response({'pk': pk})
 
