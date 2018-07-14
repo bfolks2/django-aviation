@@ -58,6 +58,12 @@ tbody tr:nth-child(even) {
   height: 50px;
 }
 
+.post-locked-area, .comment-locked-area {
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #e0e1e2;
+}
+
 .edit-button, .delete-button, .add-comment-button, .save-comment-button, .cancel-comment-button, .add-post-button {
   border-radius: 5px !important;
 }

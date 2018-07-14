@@ -5,7 +5,13 @@
       {{#if comment.hasUpdate}}(Last updated {{comment.datetimeUpdatedFormatted}}){{/if}}
     </p>
   </div>
-  {{textarea value=comment.body disabled=isTextDisabled class="comment-textarea"}}
+  {{#if isTextDisabled}}
+    <div class="comment-locked-area">
+      {{comment.body}}
+    </div>
+  {{else}}
+    {{textarea value=comment.body class="comment-textarea"}}
+  {{/if}}
   <div class="btn-group add-comment-buttons">
     {{#if showSaveCancel}}
       <button id="comment-save" class="btn btn-primary save-comment-button" {{action "save"}}>Save</button>
