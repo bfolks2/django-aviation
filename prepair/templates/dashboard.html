@@ -4,8 +4,8 @@
 {% block head_includes %}
     <title>PrepAir</title>
     <!-- Link to CSS -->
-    <link rel="stylesheet" href="{% static 'dashboard/dist/assets/vendor.css' %}">
-    <link rel="stylesheet" href="{% static 'dashboard/dist/assets/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'mydist/assets/vendor-52b14d375b4eb06d5d3284bda92f4e67.css' %}">
+    <link rel="stylesheet" href="{% static 'mydist/assets/dashboard-08a923df9e5c3013565e0c0e603002e6.css' %}">
 {% endblock %}
 
 {% block scripting %}
@@ -15,14 +15,14 @@
         window.base_redirect = {{ base_redirect }};
     </script>
 
-    <script src="{% static 'dashboard/dist/assets/vendor.js' %}"></script>
-    <script src="{% static 'dashboard/dist/assets/dashboard.js' %}"></script>
+    <script src="{% static 'mydist/assets/vendor-3f1109583d02365f0e62b8d7578a54c8.js' %}"></script>
+    <script src="{% static 'mydist/assets/dashboard-e5a19e457b80938c3ec99b479079e358.js' %}"></script>
 {% endblock %}
 
 {# The entire Ember app is nested within the below div #}
 {% block content %}
     <div class="container main-header">
-        <img src="{% static 'dashboard/dist/assets/images/departure.png' %}" style="height: 75px; width: 100px">
+        <img src="{% static 'mydist/assets/images/departure-93812b7117fa4701f345d8cc7274e424.png' %}" style="height: 75px; width: 100px">
         <span class="large-inline">Airport Dashboard</span>
     </div>
     <input id="csrfmiddlewaretokennav" name="csrfmiddlewaretokennav" type="hidden" value="{{ csrf_token }}"/>
