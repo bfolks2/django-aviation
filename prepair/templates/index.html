@@ -19,7 +19,7 @@
                 internal database, all additional static data (i.e. name, runway info, communication/frequencies, etc)
                 is then permanently saved into the internal database using this site's own <a href="/serializers/">REST API</a>.
                 The size of this site's internal airport database grows each time a user searches for a new airport.
-                All users can search across the internal database of airports for all relevant information.  Once
+                All users can search across the internal database of airports for any relevant information.  Once
                 registered, users can also post their own specific reports, or even comment on other user's experiences.
             </p>
             <p>
@@ -45,7 +45,7 @@
 
             <form class="icao-form" method="POST">
                 <div class="input-box">
-                    <input id="icao-input" type="text" placeholder="Enter 3-4 digit Airport ID" name="icao"
+                    <input id="icao-input" type="text" placeholder="Enter 3-4 digit Airport ICAO" name="icao"
                            onkeyup="validateICAO()">
                 </div>
                 <div class="small-text">
@@ -65,9 +65,14 @@
 
         <div class="sub-header text-center">
             <h2>Just here to browse around?  You can view airports already searched for by other users <a href="/dashboard/">here</a></h2>
-            <img src="{% static "media/dark_banner.png" %}" style="margin-top: 30px;"/>
-            <div class="small-text">
-                <p>The data available through this site is for flight simulation use only and must not be used for real-world aviation.</p>
+            <div class="disclaimer">
+                <div class="small-text">
+                    <p class="banner-header">External API airport data retrieved from</p>
+                </div>
+                <img src="{% static "media/dark_banner.png" %}"/>
+                <div class="small-text">
+                    <p>The data available through this site is for flight simulation use only and must not be used for real-world aviation.</p>
+                </div>
             </div>
         </div>
     </div>

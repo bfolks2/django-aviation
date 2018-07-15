@@ -82,6 +82,14 @@ span.glyphicon-wrench {
     font-style: italic;
 }
 
+.banner-header {
+    margin-bottom: 0px !important;
+}
+
+.disclaimer {
+    margin-top: 50px;
+}
+
 .register-btn input {
     margin-top: 10px;
     width: 100%;
