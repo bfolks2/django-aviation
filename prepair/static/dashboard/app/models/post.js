@@ -37,7 +37,7 @@ export default DS.Model.extend({
           _moment('datetimeCreated'),
           'moment.locale'
       ),
-      'MMMM DD, YYYY HH:mm'
+      'MMMM DD, YYYY, h:mm a'
     ),
 
     datetimeUpdatedFormatted: format(
@@ -45,7 +45,7 @@ export default DS.Model.extend({
           _moment('datetimeUpdated'),
           'moment.locale'
       ),
-      'MMMM DD, YYYY HH:mm'
+      'MMMM DD, YYYY, h:mm a'
     ),
 
     hasUpdate: computed('datetimeCreatedFormatted', 'datetimeUpdatedFormatted', function() {

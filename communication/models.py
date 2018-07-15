@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 class Post(models.Model):
@@ -10,7 +10,7 @@ class Post(models.Model):
     datetime_updated = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        self.datetime_updated = datetime.now()
+        self.datetime_updated = datetime.now(timezone.utc)
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -25,7 +25,7 @@ class Comment(models.Model):
     datetime_updated = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        self.datetime_updated = datetime.now()
+        self.datetime_updated = datetime.now(timezone.utc)
         super(Comment, self).save(*args, **kwargs)
 
     def __str__(self):

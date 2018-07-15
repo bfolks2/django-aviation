@@ -21,7 +21,8 @@ def populate_posts_comment():
 
     body_fake = Faker()
     word_list = ['airport', 'runway', 'frequency', 'landing', 'takeoff', 'weather', 'taxiway', 'tower', 'clearance',
-                 'arrival', 'departure', 'turbulence', 'winds', 'obstacle', 'services', 'approach']
+                 'arrival', 'departure', 'turbulence', 'winds', 'obstacle', 'services', 'approach', 'the', 'this',
+                 'on', 'from', 'light', 'heavy']
 
     for airport in all_airports:
         posts = Post.objects.filter(airport=airport)
@@ -52,7 +53,30 @@ def populate_posts_comment():
                 Comment.objects.create(**data)
 
 
+def edit_posts_comments():
+    all_posts = Post.objects.all()
+    all_comments = Comment.objects.all()
+
+    body_fake = Faker()
+    word_list = ['airport', 'runway', 'frequency', 'landing', 'takeoff', 'weather', 'taxiway', 'tower', 'clearance',
+                 'arrival', 'departure', 'turbulence', 'winds', 'obstacle', 'services', 'approach', 'the', 'this',
+                 'on', 'from', 'light', 'heavy']
+
+    for post in all_posts:
+        coinflip = random.randint(1, 2)
+        if coinflip == 1:
+            post.body = body_fake.sentence(nb_words=15, ext_word_list=word_list)
+            post.save()
+
+    for comment in all_comments:
+        coinflip = random.randint(1, 2)
+        if coinflip == 1:
+            comment.body = body_fake.sentence(nb_words=12, ext_word_list=word_list)
+            comment.save()
+
+
 if __name__ == '__main__':
     print('Populating Post DB')
-    populate_posts_comment()
+    # populate_posts_comment()
+    # edit_posts_comments()
     print('Finished')
