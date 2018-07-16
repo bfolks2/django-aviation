@@ -56,6 +56,10 @@ tbody tr:nth-child(even) {
   margin-left: 5%;
 }
 
+.live-input {
+  margin-bottom: 35px;
+}
+
 .post-textarea, .comment-textarea {
   resize: none;
   width: 100%;
@@ -68,11 +72,11 @@ tbody tr:nth-child(even) {
   background-color: #e0e1e2;
 }
 
-.edit-button, .delete-button, .add-comment-button, .save-comment-button, .cancel-comment-button, .add-post-button {
+.btn {
   border-radius: 5px !important;
 }
 
-.edit-button, .save-comment-button {
+.edit-button, .save-comment-button, .save-post-button {
   margin-right: 5px;
 }
 

@@ -62,7 +62,7 @@
 <div class="posts-section">
   <h2>Member Posts & Comments for {{model.airport.icao}}</h2>
   {{#if showButtons}}
-    <button id="post-add" class="btn btn-primary add-post-button" disabled={{isButtonDisabled}} {{action "createNew"}}>Add New Post</button>
+    <button class="btn btn-primary add-post-button" disabled={{isButtonDisabled}} {{action "createNew"}}>Add New Post</button>
   {{else}}
     <p class="alert-warning post-input text-center">***You must Register/Login to Add Posts and Comments to {{model.airport.icao}}***</p>
   {{/if}}
@@ -70,8 +70,8 @@
     {{#if createNewPost}}
       {{textarea class="post-textarea" value=newBody}}
       <div class="btn-group add-post-buttons">
-        <button id="post-save" class="btn btn-primary save-comment-button" {{action "saveNew"}}>Save</button>
-        <button id="post-cancel" class="btn btn-warning cancel-comment-button" {{action "cancelNew"}}>Cancel</button>
+        <button class="btn btn-primary save-post-button" {{action "saveNew"}}>Save</button>
+        <button class="btn btn-warning cancel-post-button" {{action "cancelNew"}}>Cancel</button>
       </div>
     {{/if}}
   </div>
