@@ -23,6 +23,11 @@ h4 {
     font-size: 1.1em !important;
 }
 
+.bold-underline {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .bold-text {
     font-weight: bold;
 }
