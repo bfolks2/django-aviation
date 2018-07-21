@@ -47,10 +47,6 @@ tbody tr:nth-child(even) {
   padding-top: 10px;
 }
 
-.post-input, .comment-input {
-  margin-right: 10%
-}
-
 .comment-input {
   padding-top: 5px;
   margin-left: 5%;
