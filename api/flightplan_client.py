@@ -53,7 +53,7 @@ class FlightPlanAPIClient(object):
     def get(self, icao):
 
         airport = None
-        icao_db = icao.upper()
+        icao_db = icao.upper().strip()
         query = Airport.objects.filter(icao=icao_db)
 
         # If an Airport already exists, get it.  Otherwise create it and all its Foreign Key relations
