@@ -67,7 +67,7 @@ class FlightPlanAPIClient(object):
                 if difference < 1800:
                     return {'pk': airport.pk}
 
-        url = u'{}nav/airport/{}'.format(self.HOST, icao)
+        url = u'{}nav/airport/{}'.format(self.HOST, icao_db)
 
         headers = {
             'Authorization': 'KM2iNdFY4lVKtHTiwsqEP40Wgarbm4z9MAbEVWqY',
