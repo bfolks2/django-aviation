@@ -33,6 +33,9 @@ def index(request):
             error_code = response.get('error')
             if error_code == 429:
                 return render(request, 'index.html', {'over_limit': True})
+            elif not error_code:
+                general_error = 'An Unknown error has occurred.  Contact site Admin.'
+                return render(request, 'index.html', {'error_code': general_error, 'icao': icao})
             else:
                 return render(request, 'index.html', {'error_code': error_code, 'icao': icao})
 

@@ -15,7 +15,7 @@ class FlightPlanAPIClient(object):
     AIRPORT_MAPPER = {
         'ICAO': 'icao',
         'name': 'name',
-        'region': 'region',
+        'regionName': 'region',
         'elevation': 'elevation',
     }
 
@@ -103,8 +103,8 @@ class FlightPlanAPIClient(object):
 
         data = self.field_mapper_logic(self.AIRPORT_MAPPER, json)
 
-        airport_serializer = AirportSerializer(data=data)
         data = self.airport_field_validator(data)
+        airport_serializer = AirportSerializer(data=data)
 
         if airport_serializer.is_valid(raise_exception=False):
             airport = Airport.objects.create(**airport_serializer.validated_data)
@@ -151,6 +151,10 @@ class FlightPlanAPIClient(object):
         value = data['name']
         converted_value = value.lower().title()
         data['name'] = converted_value
+
+        elev = data['elevation']
+        converted_elev = round(elev)
+        data['elevation'] = converted_elev
 
         return data
 
