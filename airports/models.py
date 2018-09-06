@@ -5,7 +5,7 @@ class Airport(models.Model):
 
     icao = models.CharField(max_length=4, unique=True)
     name = models.CharField(max_length=256)
-    region = models.CharField(max_length=32)
+    region = models.CharField(max_length=32, blank=True, null=True)
     elevation = models.IntegerField(help_text='MSL, feet')
 
     # Dynamic values altered per GET request
