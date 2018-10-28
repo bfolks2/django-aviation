@@ -30,6 +30,8 @@ h4 {
 
 .bold-text {
     font-weight: bold;
+    font-size: 1.75rem;
+    text-decoration: underline;
 }
 
 .navbar li a {
